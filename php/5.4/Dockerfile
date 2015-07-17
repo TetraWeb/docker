@@ -1,5 +1,9 @@
 FROM php:5.4
 
+RUN echo "deb http://httpredir.debian.org/debian jessie contrib non-free" > /etc/apt/sources.list.d/additional.list
+
+RUN apt-get update && apt-get install libmcrypt-dev
+
 # Additional php extensions
 RUN docker-php-ext-install gettext mbstring mcrypt pdo_mysql
 
