@@ -1,5 +1,7 @@
 FROM php:5.4
 
+MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
+
 RUN echo "deb http://httpredir.debian.org/debian jessie contrib non-free" > /etc/apt/sources.list.d/additional.list
 
 RUN apt-get update && apt-get install -y libmcrypt-dev libssl-dev --no-install-recommends && \
