@@ -5,7 +5,7 @@ RUN echo "deb http://httpredir.debian.org/debian jessie contrib non-free" > /etc
 RUN apt-get update && apt-get install -y libmcrypt-dev --no-install-recommends
 
 # Additional php extensions
-RUN docker-php-ext-install gettext mbstring mcrypt pdo_mysql
+RUN docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql
 
 # Install git
 RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*
