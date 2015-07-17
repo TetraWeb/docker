@@ -1,4 +1,4 @@
-FROM php:5.6
+FROM tetraweb/php:5.3-vanilla
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
