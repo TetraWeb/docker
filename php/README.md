@@ -1,3 +1,3 @@
-# PHP with git installed
+# PHP for CI
 
-This image is built from official php package, just git is installed
+This image is built from official php package, with few more extensions installed as well as git
