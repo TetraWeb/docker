@@ -2,7 +2,11 @@ FROM php:5.4
 
 RUN echo "deb http://httpredir.debian.org/debian jessie contrib non-free" > /etc/apt/sources.list.d/additional.list
 
-RUN apt-get update && apt-get install -y libmcrypt-dev --no-install-recommends
+RUN apt-get update && apt-get install -y libmcrypt-dev libssl-dev --no-install-recommends && \
+    printf "\n" | pecl install mongo && \
+    echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini && \
+    pecl install redis && \
+    echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini
 
 # Additional php extensions
 RUN docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql
