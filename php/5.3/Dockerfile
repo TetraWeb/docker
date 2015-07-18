@@ -5,7 +5,7 @@ MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 # Install php extensions
 RUN buildDeps=" \
         libmcrypt-dev \
-        libmysqlclient-dev
+        libmysqlclient-dev \
         libssl-dev \
         zlib1g-dev \
     " \
