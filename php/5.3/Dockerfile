@@ -3,13 +3,20 @@ FROM tetraweb/php:5.3-vanilla
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
 # Install php extensions
-RUN echo "deb http://httpredir.debian.org/debian wheezy contrib non-free" > /etc/apt/sources.list.d/additional.list \
-    && apt-get update && apt-get install -y libmcrypt-dev libssl-dev zlib1g-dev --no-install-recommends \
+RUN buildDeps=" \
+        libmcrypt-dev \
+        libmysql-dev \
+        libssl-dev \
+        zlib1g-dev \
+    " \
+    && echo "deb http://httpredir.debian.org/debian wheezy contrib non-free" > /etc/apt/sources.list.d/additional.list \
+    && apt-get update && apt-get install -y $buildDeps --no-install-recommends \
     && printf "\n" | pecl install mongo \
     && echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini \
     && pecl install redis \
     && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
-    && docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql zip
+    && docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql zip \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps
 
 # Install git
 RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*
