@@ -1,4 +1,5 @@
-FROM debian:jessie
+# There is an openssl compilation issue on jessie, so have to stick with wheezy
+FROM debian:wheezy
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
@@ -49,7 +50,6 @@ RUN buildDeps=" \
 		--enable-mysqlnd \
 		--with-curl \
 		--with-openssl \
-		--with-pcre \
 		--with-readline \
 		--with-recode \
 		--with-zlib \
