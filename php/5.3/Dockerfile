@@ -3,7 +3,7 @@ FROM tetraweb/php:5.3-vanilla
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
 # Install php extensions
-RUN echo "deb http://httpredir.debian.org/debian jessie contrib non-free" > /etc/apt/sources.list.d/additional.list \
+RUN echo "deb http://httpredir.debian.org/debian wheezy contrib non-free" > /etc/apt/sources.list.d/additional.list \
     && apt-get update && apt-get install -y libmcrypt-dev libssl-dev zlib1g-dev --no-install-recommends \
     && printf "\n" | pecl install mongo \
     && echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini \
