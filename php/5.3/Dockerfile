@@ -5,12 +5,13 @@ MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 # Install php extensions
 RUN buildDeps=" \
         libmcrypt-dev \
-        libmysqlclient-dev \
+        libmysqlclient-dev
         libssl-dev \
         zlib1g-dev \
     " \
     && echo "deb http://httpredir.debian.org/debian wheezy contrib non-free" > /etc/apt/sources.list.d/additional.list \
-    && apt-get update && apt-get install -y $buildDeps --no-install-recommends \
+    && apt-get update && apt-get install -y libmcrypt libmysqlclient --no-install-recommends \
+    && apt-get install -y $buildDeps --no-install-recommends \
     && printf "\n" | pecl install mongo \
     && echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini \
     && pecl install redis \
