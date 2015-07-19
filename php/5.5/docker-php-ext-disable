@@ -1,0 +1,67 @@
+#!/bin/bash
+set -e
+
+ext_path="/usr/local/etc/php/conf.d"
+
+cd $ext_path
+
+usage() {
+        echo -e "\e[32mUsage\e[0m: $(basename $0) ext-name [ext-name ...]"
+        echo "   ie: $(basename $0) xdebug mbstring"
+        echo
+        echo -e "\e[32mCurrently enabled extensions:\e[0m"
+        echo
+        find $ext_path -type f -name '*.ini' -exec basename '{}' \; | sed 's/docker-php-ext-//' | sed 's/.ini//' | sort
+}
+
+ret=0
+
+echo
+
+if [ $# -eq 0 ]; then
+        usage
+fi
+
+while [ $# -gt 0 ]; do
+        ext="$1"
+        ext_enabled=""
+        ext_disabled=""
+        ext_full=""
+        shift
+
+        [ -z "$ext" ] && continue
+
+        [ -f "$ext.ini.disabled" ] && ext_disabled=1 \
+                && ext_full="$ext.ini";
+
+        [ -f "docker-php-ext-$ext.ini.disabled" ] && ext_disabled=1 \
+                && ext_full="docker-php-ext-$ext.ini";
+
+        if [ -z "$ext_disabled" ]; then
+                [ -f "$ext.ini" ] && ext_enabled=1 \
+                        && ext_full="$ext.ini";
+
+                [ -f "docker-php-ext-$ext.ini" ] && ext_enabled=1 \
+                        && ext_full="docker-php-ext-$ext.ini";
+        fi
+
+        if [ ! -z "$ext_disabled" ]; then
+                echo -e "\e[31mWARNING:\e[0m file \e[1m$ext_full.disabled\e[0m exists"\
+                        "already in $ext_path"
+                continue
+        elif [ -z "$ext_enabled" ]; then
+                echo -e "\e[31mERROR:\e[0m There is no"\
+                        "\e[1m$ext.ini\e[0m or"\
+                        "\e[1mdocker-php-ext-$ext.ini\e[0m"
+                echo -e "in \e[1m$ext_path\e[0m"
+                ret=1
+                continue
+        else
+                mv "$ext_path/$ext_full" "$ext_path/$ext_full.disabled"
+                echo -e "Successfully disabled \e[32m$ext\e[0m"
+        fi
+done
+
+echo
+
+exit $ret
