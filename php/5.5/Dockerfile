@@ -40,3 +40,4 @@ RUN curl -sS https://getcomposer.org/installer | php \
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
+CMD ["php", "-a"]
