@@ -25,5 +25,10 @@ Also these tools are trying to be resources savvy, since in most cases huge in-R
  - MySQL with smaller RAM demands
  - Mongo (Maybe smaller initial size to decrease the time of initialization)
 
+## Requirements
+ - Gitlab v
+ - Gitlab CI v
+ - Gitlab runner v
+
 ## Similar projects
  - https://github.com/bobey/docker-gitlab-ci-runner (For old gitlab-ci-runner, misses PHP 5.3)
