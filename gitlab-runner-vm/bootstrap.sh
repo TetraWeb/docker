@@ -20,23 +20,23 @@
 # COMPOSER_GITHUB="TOKEN" - Github oauth token passed to each container
 #
 # Usage:
-# 1. Download this script to fresh ubuntu distribution
-# 2. List needed variables before the script, eg.
-# # CI_URL="http://ci.example.com" CI_TOKEN="12345abcdef" ./bootstrap.sh
-#
-# If you omit CI_URL and CI_TOKEN variables, script will prompt for them in 
-# interactive mode. Rest of variables have default values
+# 1. Install fresh ubuntu distribution
+# 2.1 Non-interactive mode (doesn't require any input):
+#     # export CI_URL=http://ci.example.com CI_TOKEN=12345abcdef[ OTHER_VAR=VALUE ...]; curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
+# OR
+# 2.2 Interactive mode (script will ask for all variables to be typed while run)
+#     # curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
 #
 ###############################################################################
 
 while [ -z "$CI_URL" ]; do
     echo -n "Enter URL of your Gitlab CI installation: "
-    read CI_URL
+    read CI_URL < /dev/tty
 done
 
 while [ -z "$CI_TOKEN" ]; do
-    echo -n "Enter API key from $CI_URL/admin/runners: "
-    read CI_TOKEN
+    echo -n "Enter API key (find it at $CI_URL/admin/runners:) "
+    read CI_TOKEN < /dev/tty
 done
 
 if [ ! -z "$TZ" ]; then
