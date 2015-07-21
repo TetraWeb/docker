@@ -59,6 +59,8 @@ RUN buildDeps=" \
 	&& apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
 	&& make clean
 
+RUN apt-get update && apt-get install -y procps --no-install-recommends && rm -r /var/lib/apt/lists/*
+
 COPY docker-php-ext-* /usr/local/bin/
 
 CMD ["php", "-a"]
