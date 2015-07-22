@@ -31,7 +31,7 @@ RUN buildDeps=" \
 xdebug.default_enable=1\n\
 xdebug.cli_color=1\n\
 xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini.disabled \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps
 
 # Install git
 RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*
