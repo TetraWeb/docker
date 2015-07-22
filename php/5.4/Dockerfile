@@ -2,6 +2,8 @@ FROM php:5.4
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
+COPY docker-php-ext-* /usr/local/bin/
+
 ENV XDEBUG_VERSION 2.3.3
 
 # Install php extensions
@@ -41,7 +43,6 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/ \
     && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
-COPY docker-php-ext-* /usr/local/bin/
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php", "-a"]

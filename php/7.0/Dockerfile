@@ -2,6 +2,8 @@ FROM php:7.0
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
+COPY entrypoint.sh /entrypoint.sh
+
 ENV XDEBUG_VERSION 2.3.3
 
 # Install php extensions
@@ -18,6 +20,7 @@ RUN buildDeps=" \
 #    && pecl install redis \
 #    && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
     && docker-php-ext-install gettext mbstring mcrypt opcache pcntl pdo_mysql zip \
+    && docker-php-ext-disable opcache \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps
 #    && mkdir /tmp/xdebug && cd /tmp/xdebug \
 #    && curl -L http://xdebug.org/files/xdebug-$XDEBUG_VERSION.tgz | tar -zxf - \
@@ -41,6 +44,5 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/ \
     && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
-COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php", "-a"]
