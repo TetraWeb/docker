@@ -30,7 +30,7 @@ RUN buildDeps=" \
     && echo "zend_extension=$EXT_DIR/xdebug.so\n\
 xdebug.default_enable=1\n\
 xdebug.cli_color=1\n\
-xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini.disabled
+xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini.disabled \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps
 
 # Install git
