@@ -2,7 +2,7 @@ FROM php:7.0
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
-COPY entrypoint.sh /entrypoint.sh
+COPY docker-php-ext-* /usr/local/bin/
 
 ENV XDEBUG_VERSION 2.3.3
 
@@ -33,9 +33,6 @@ RUN buildDeps=" \
 #xdebug.cli_color=1\n\
 #xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini.disabled
 
-COPY docker-php-ext-* /usr/local/bin/
-docker-php-ext-disable opcache
-
 # Install git
 RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*
 
@@ -44,5 +41,6 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/ \
     && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
+COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php", "-a"]
