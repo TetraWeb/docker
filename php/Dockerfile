@@ -21,7 +21,6 @@ RUN buildDeps=" \
     && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
     && docker-php-ext-install gettext mbstring mcrypt opcache pcntl pdo_mysql zip \
     && docker-php-ext-disable opcache \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
     && mkdir /tmp/xdebug && cd /tmp/xdebug \
     && curl -L http://xdebug.org/files/xdebug-$XDEBUG_VERSION.tgz | tar -zxf - \
     && cd xdebug-$XDEBUG_VERSION \
@@ -32,6 +31,7 @@ RUN buildDeps=" \
 xdebug.default_enable=1\n\
 xdebug.cli_color=1\n\
 xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini.disabled
+    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
 
 # Install git
 RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*
