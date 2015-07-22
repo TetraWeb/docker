@@ -1,0 +1,1 @@
+# MySQL images with minimized RAM requirements
