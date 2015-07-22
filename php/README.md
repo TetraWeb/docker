@@ -2,7 +2,7 @@
 
 These images are built from [Docker official php images](https://registry.hub.docker.com/_/php/), but additionally include:
 
- - External extensions: redis, mongo, xdebug (disabled by default)
+ - External extensions: redis, mongo. Disabled by default: opcache, xdebug
  - Core extensions: gettext, mbstring, mcrypt, pcntl, pdo_mysql, zip
  - Git client from official jessie repo
  - composer
