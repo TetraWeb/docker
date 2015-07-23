@@ -63,13 +63,13 @@ wget -qO- https://get.docker.com/ | sh
 
 # Install multi-runner
 curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
-
 apt-get install gitlab-ci-multi-runner
-cd ~gitlab_ci_multi_runner
+
+sudo gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" -t 'php,mysql,redis,mongo' -e docker --docker-image tetraweb/php --docker-mysql latest --docker-mongo latest --docker-redis latest
+
 cronjob = "#!/bin/bash\n"
 for phpver in 5.3 5.4 5.5 5.6 7.0
 do
-    sudo -u gitlab_ci_multi_runner -H gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" -t "php-$phpver,mysql,redis" -e 'docker' --docker-image tetraweb/php:$phpver --docker-mysql latest --docker-redis latest
     cronjob+="docker pull tetraweb/php:$phpver\n"
 done
 
