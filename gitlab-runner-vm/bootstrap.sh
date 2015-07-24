@@ -53,6 +53,11 @@ do_install() {
         read CI_TOKEN < /dev/tty
     done
 
+    if [ -z "$COMPOSER_GITHUB" ]; then
+        echo -n "Composer Github token (optional): "
+        read COMPOSER_GITHUB < /dev/tty
+    fi
+
     if [ ! -z "$TZ" ]; then
         echo "$TZ" > /etc/timezone
         ln -sf "/usr/share/zoneinfo/$TZ" /etc/localtime
@@ -62,14 +67,12 @@ do_install() {
         create_swap
     fi
 
-    if [ -z "$COMPOSER_GITHUB" ]; then
-        echo -n "Composer Github token (optional): "
-        read COMPOSER_GITHUB < /dev/tty
-    fi
-
     if [ -z "$CONCURRENT" ]; then
         echo -n "Number of concurrent processes ($(nproc)): "
         read CONCURRENT < /dev/tty
+        if [ -z "$CONCURRENT" ]; then
+            CONCURRENT=$(nproc)
+        fi
     fi
 
     export DEBIAN_FRONTEND=noninteractive
@@ -87,9 +90,7 @@ do_install() {
     echo "    allowed_images = [\"tetraweb/php:*\"]" >> /etc/gitlab-runner/config.toml
     echo "    allowed_services = [\"*\"]" >> /etc/gitlab-runner/config.toml
 
-    if [ ! -z "$CONCURRENT" ]; then
-        sed -i -- "s/concurrent = 1/concurrent = $CONCURRENT/g" /etc/gitlab-runner/config.toml
-    fi
+    sed -i -- "s/concurrent = 1/concurrent = $CONCURRENT/g" /etc/gitlab-runner/config.toml
 
     cronjob="#!/bin/bash\n"
     for phpver in 5.3 5.4 5.5 5.6 7.0
