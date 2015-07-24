@@ -95,8 +95,8 @@ do_install() {
     if [ ! -z "$COMPOSER_GITHUB" ]; then
         ENVVARS=",\"COMPOSER_GITHUB=$COMPOSER_GITHUB\""
     fi
-    sed -i -- "s/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"/s/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"$ENVVARS/g" /etc/gitlab-runner/config.toml
-    sed -i -- "s/services = [\"mysql:latest\"]/s/services = [\"tetraweb/mysql:latest\"]/g" /etc/gitlab-runner/config.toml
+    sed -i -- "s/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"$ENVVARS/g" /etc/gitlab-runner/config.toml
+    sed -i -- "s/services = [\"mysql:latest\"]/services = [\"tetraweb/mysql:latest\"]/g" /etc/gitlab-runner/config.toml
 
     cronjob="#!/bin/bash\n"
     for phpver in 5.3 5.4 5.5 5.6 7.0
