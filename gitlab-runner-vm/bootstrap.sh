@@ -71,7 +71,7 @@ do_install() {
     echo "    allowed_images = [\"tetraweb/php:*\"]" >> /etc/gitlab-runner/config.toml
     echo "    allowed_services = [\"*\"]" >> /etc/gitlab-runner/config.toml
 
-    cronjob = "#!/bin/bash\n"
+    cronjob="#!/bin/bash\n"
     for phpver in 5.3 5.4 5.5 5.6 7.0
     do
         cronjob+="docker pull tetraweb/php:$phpver\n"
@@ -79,7 +79,7 @@ do_install() {
 
     # Cleanup orphaned images
     cronjob+="docker rmi $(docker images | grep none | awk '{print $3}')\n"
-    echo $cronjob > /etc/cron.daily/docker-update-images
+    echo "$cronjob" > /etc/cron.daily/docker-update-images
     chmod 755 /etc/cron.daily/docker-update-images
 }
 
