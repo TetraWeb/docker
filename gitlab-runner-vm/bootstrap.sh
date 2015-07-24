@@ -22,12 +22,14 @@
 # Usage:
 # 1. Install fresh ubuntu distribution
 # 2.1 Non-interactive mode (doesn't require any input):
-#     # export CI_URL=http://ci.example.com CI_TOKEN=12345abcdef[ OTHER_VAR=VALUE ...]; curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
+#     # export CI_URL=http://ci.example.com CI_TOKEN=12345abcdef[ OTHER_VAR=VALUE ...]; curl -SL https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
 # OR
 # 2.2 Interactive mode (script will ask for all variables to be typed while run)
 #     # curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
 #
 ###############################################################################
+
+set -e
 
 create_swap() {
     dd if=/dev/zero of=/swapfile bs=1024 count=1024k
@@ -47,7 +49,7 @@ do_install() {
     done
 
     while [ -z "$CI_TOKEN" ]; do
-        echo -n "Enter API key (find it at $CI_URL/admin/runners:) "
+        echo -n "Enter API key (find it at $CI_URL/admin/runners): "
         read CI_TOKEN < /dev/tty
     done
 
