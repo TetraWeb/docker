@@ -62,7 +62,7 @@ do_install() {
         create_swap
     fi
 
-    if [ ! -z "$COMPOSER_GITHUB" ]; then
+    if [ -z "$COMPOSER_GITHUB" ]; then
         echo -n "Composer Github token (optional): "
         read COMPOSER_GITHUB < /dev/tty
     fi
