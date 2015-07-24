@@ -58,6 +58,15 @@ do_install() {
         ln -sf "/usr/share/zoneinfo/$TZ" /etc/localtime
     fi
 
+    if [ ! -z "$USE_SWAP" ]; then
+        create_swap
+    fi
+
+    if [ ! -z "$COMPOSER_GITHUB" ]; then
+        echo -n "Composer Github token (optional): "
+        read COMPOSER_GITHUB < /dev/tty
+    fi
+
     export DEBIAN_FRONTEND=noninteractive
     apt-get update && apt-get -y upgrade
     apt-get -y install mc htop ntpdate git curl wget openssh-server
