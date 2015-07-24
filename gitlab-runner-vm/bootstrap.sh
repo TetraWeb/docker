@@ -29,51 +29,58 @@
 #
 ###############################################################################
 
-while [ -z "$CI_URL" ]; do
-    echo -n "Enter URL of your Gitlab CI installation: "
-    read CI_URL < /dev/tty
-done
+create_swap() {
+    dd if=/dev/zero of=/swapfile bs=1024 count=1024k
+    mkswap /swapfile
+    swapon /swapfile
+    echo "/swapfile       none    swap    sw      0       0" >> /etc/fstab
+    echo 10 | tee /proc/sys/vm/swappiness
+    echo vm.swappiness = 10 | tee -a /etc/sysctl.conf
+    chown root:root /swapfile
+    chmod 0600 /swapfile
+}
 
-while [ -z "$CI_TOKEN" ]; do
-    echo -n "Enter API key (find it at $CI_URL/admin/runners:) "
-    read CI_TOKEN < /dev/tty
-done
+do_install() {
+    while [ -z "$CI_URL" ]; do
+        echo -n "Enter URL of your Gitlab CI installation: "
+        read CI_URL < /dev/tty
+    done
 
-if [ ! -z "$TZ" ]; then
-    echo "$TZ" > /etc/timezone
-    ln -sf "/usr/share/zoneinfo/$TZ" /etc/localtime
-fi
+    while [ -z "$CI_TOKEN" ]; do
+        echo -n "Enter API key (find it at $CI_URL/admin/runners:) "
+        read CI_TOKEN < /dev/tty
+    done
 
-# Create swap
-# dd if=/dev/zero of=/swapfile bs=1024 count=1024k
-# mkswap /swapfile
-# swapon /swapfile
-# echo "/swapfile       none    swap    sw      0       0" >> /etc/fstab
-# echo 10 | tee /proc/sys/vm/swappiness
-# echo vm.swappiness = 10 | tee -a /etc/sysctl.conf
-# chown root:root /swapfile
-# chmod 0600 /swapfile
+    if [ ! -z "$TZ" ]; then
+        echo "$TZ" > /etc/timezone
+        ln -sf "/usr/share/zoneinfo/$TZ" /etc/localtime
+    fi
 
-export DEBIAN_FRONTEND=noninteractive
-apt-get update && apt-get -y upgrade
-apt-get -y install mc htop ntpdate git curl wget openssh-server
+    export DEBIAN_FRONTEND=noninteractive
+    apt-get update && apt-get -y upgrade
+    apt-get -y install mc htop ntpdate git curl wget openssh-server
 
-# Install docker
-wget -qO- https://get.docker.com/ | sh
+    # Install docker
+    wget -qO- https://get.docker.com/ | sh
 
-# Install multi-runner
-curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
-apt-get install gitlab-ci-multi-runner
+    # Install multi-runner
+    curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
+    apt-get install gitlab-ci-multi-runner
 
-sudo gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" -t 'php,mysql,redis,mongo' -e docker --docker-image tetraweb/php --docker-mysql latest --docker-mongo latest --docker-redis latest
+    sudo gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" -t 'php,mysql,redis,mongo' -e docker --docker-image tetraweb/php --docker-mysql latest --docker-mongo latest --docker-redis latest
+    echo "    allowed_images = [\"tetraweb/php:*\"]" >> /etc/gitlab-runner/config.toml
+    echo "    allowed_services = [\"*\"]" >> /etc/gitlab-runner/config.toml
 
-cronjob = "#!/bin/bash\n"
-for phpver in 5.3 5.4 5.5 5.6 7.0
-do
-    cronjob+="docker pull tetraweb/php:$phpver\n"
-done
+    cronjob = "#!/bin/bash\n"
+    for phpver in 5.3 5.4 5.5 5.6 7.0
+    do
+        cronjob+="docker pull tetraweb/php:$phpver\n"
+    done
 
-# Cleanup orphaned images
-cronjob+="docker rmi $(docker images | grep none | awk '{print $3}')\n"
-echo $cronjob > /etc/cron.daily/docker-update-images
-chmod 755 /etc/cron.daily/docker-update-images
+    # Cleanup orphaned images
+    cronjob+="docker rmi $(docker images | grep none | awk '{print $3}')\n"
+    echo $cronjob > /etc/cron.daily/docker-update-images
+    chmod 755 /etc/cron.daily/docker-update-images
+}
+
+do_install
