@@ -67,6 +67,11 @@ do_install() {
         read COMPOSER_GITHUB < /dev/tty
     fi
 
+    fi [ -z "$CONCURRENT" ]; then
+        echo -n "Number of concurrent processes ($(nproc)): "
+        read CONCURRENT < /dev/tty
+    fi
+
     export DEBIAN_FRONTEND=noninteractive
     apt-get update && apt-get -y upgrade
     apt-get -y install mc htop ntpdate git curl wget openssh-server
@@ -81,6 +86,10 @@ do_install() {
     sudo gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" -t 'php,mysql' -e docker --docker-image tetraweb/php:latest --docker-mysql latest
     echo "    allowed_images = [\"tetraweb/php:*\"]" >> /etc/gitlab-runner/config.toml
     echo "    allowed_services = [\"*\"]" >> /etc/gitlab-runner/config.toml
+
+    if [ ! -z "$CONCURRENT" ]; then
+        sed -i -- "s/concurrent = 1/concurrent = $CONCURRENT/g" /etc/gitlab-runner/config.toml
+    fi
 
     cronjob="#!/bin/bash\n"
     for phpver in 5.3 5.4 5.5 5.6 7.0
