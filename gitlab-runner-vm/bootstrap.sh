@@ -93,7 +93,7 @@ do_install() {
     sed -i -- "s/concurrent = 1/concurrent = $CONCURRENT/g" /etc/gitlab-runner/config.toml
 
     if [ ! -z "$COMPOSER_GITHUB" ]; then
-        ENVVARS=",\"COMPOSER_GITHUB=$COMPOSER_GITHUB\""
+        ENVVARS=", \"COMPOSER_GITHUB=$COMPOSER_GITHUB\""
     fi
     sed -i -- "s/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"$ENVVARS/g" /etc/gitlab-runner/config.toml
     sed -i -- "s/services =/#services =/g" /etc/gitlab-runner/config.toml
