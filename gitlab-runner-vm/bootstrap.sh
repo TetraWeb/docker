@@ -25,7 +25,7 @@
 #     # export CI_URL=http://ci.example.com CI_TOKEN=12345abcdef[ OTHER_VAR=VALUE ...]; curl -SL https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
 # OR
 # 2.2 Interactive mode (script will ask for all variables to be typed while run)
-#     # curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
+#     # curl -SL https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
 #
 ###############################################################################
 
@@ -67,7 +67,7 @@ do_install() {
         read COMPOSER_GITHUB < /dev/tty
     fi
 
-    fi [ -z "$CONCURRENT" ]; then
+    if [ -z "$CONCURRENT" ]; then
         echo -n "Number of concurrent processes ($(nproc)): "
         read CONCURRENT < /dev/tty
     fi
