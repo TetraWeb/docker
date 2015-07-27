@@ -105,7 +105,7 @@ do_install() {
     done
 
     # Cleanup orphaned images
-    cronjob+="docker rmi $(docker images | grep none | awk '{print $3}')\n"
+    cronjob+="docker rmi \$(docker images | grep none | awk '{print $3}')\n"
     echo -e "$cronjob" > /etc/cron.daily/docker-update-images
     chmod 755 /etc/cron.daily/docker-update-images
 }
