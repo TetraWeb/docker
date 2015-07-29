@@ -88,7 +88,7 @@ do_install() {
 
     sudo gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" -t 'php,mysql' -e docker --docker-image tetraweb/php:latest --docker-mysql latest
     echo "    allowed_images = [\"tetraweb/php:*\"]" >> /etc/gitlab-runner/config.toml
-    echo "    allowed_services = [\"*\"]" >> /etc/gitlab-runner/config.toml
+    echo "    allowed_services = [\"*\", \"*/*\"]" >> /etc/gitlab-runner/config.toml
 
     sed -i -- "s/concurrent = 1/concurrent = $CONCURRENT/g" /etc/gitlab-runner/config.toml
 
