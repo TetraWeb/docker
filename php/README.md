@@ -5,7 +5,8 @@ These images are built from [Docker official php images](https://registry.hub.do
  - External extensions: redis, mongo. Disabled by default: opcache, xdebug (Opcache is compiled as core extension in PHP 5.5+)
  - Core extensions: gettext, mbstring, mcrypt, pcntl, pdo_mysql, zip
  - Git client from official jessie repo
- - composer
+ - Composer
+ - PHPUnit - latest stable version
  - `docker-php-ext-enable` and `docker-php-ext-disable` will enable and disable extensions
 
 See below for details

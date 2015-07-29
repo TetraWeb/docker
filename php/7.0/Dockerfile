@@ -41,6 +41,11 @@ RUN curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/ \
     && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
+# Install phpunit and put binary into $PATH
+RUN curl -sSo phpunit.phar https://phar.phpunit.de/phpunit.phar \
+    && mv phpunit.phar /usr/local/bin/ \
+    && ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
+
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["php", "-a"]
