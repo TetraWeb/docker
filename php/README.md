@@ -19,7 +19,7 @@ See below for details
 ## Advantages of these images
 
  - Builds are based on official Docker php images
- - Automatically rebuilds when official images are updated, so this repository always contain the latest versions
+ - Automatically rebuilt when official images are updated, so this repository always contains the latest versions
  - PHP 5.3 added based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
 
 # Supported tags and respective `Dockerfile` links

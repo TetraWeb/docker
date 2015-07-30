@@ -26,9 +26,9 @@ Also these tools are trying to be resources savvy, since in most cases huge in-R
  - Mongo (Maybe smaller initial size to decrease the time of initialization)
 
 ## Requirements
- - Gitlab v
- - Gitlab CI v
- - Gitlab runner v
+ - Gitlab v`7.13.0` and later
+ - Gitlab CI v`7.13.0` and later
+ - Gitlab runner v`0.5.0` and later
 
 ## Similar projects
  - https://github.com/bobey/docker-gitlab-ci-runner (For old gitlab-ci-runner, misses PHP 5.3)
