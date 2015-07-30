@@ -1,5 +1,10 @@
 # PHP for CI
 
+PHP Docker images for continuous integration and running tests. These images were created for using with Gitlab CI.
+Although they can be used with any automated testing system or as standalone services.
+
+Images do not have `VOLUME` directories since fresh version of sources is supposed to be downloaded into image each time before running tests
+
 These images are built from [Docker official php images](https://registry.hub.docker.com/_/php/), but additionally include:
 
  - External extensions: redis, mongo. Disabled by default: opcache, xdebug (Opcache is compiled as core extension in PHP 5.5+)
@@ -7,9 +12,15 @@ These images are built from [Docker official php images](https://registry.hub.do
  - Git client from official jessie repo
  - Composer
  - PHPUnit - latest stable version
- - `docker-php-ext-enable` and `docker-php-ext-disable` will enable and disable extensions
+ - `docker-php-ext-enable` and `docker-php-ext-disable` will enable and disable extensions (load modules in additional ini files)
 
 See below for details
+
+## Advantages of these images
+
+ - Builds are based on official Docker php images
+ - Automatically rebuilds when official images are updated, so this repository always contain the latest versions
+ - PHP 5.3 added based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
 
 # Supported tags and respective `Dockerfile` links
 
@@ -30,9 +41,3 @@ There are environment variables which can be passed to images on docker run
  - `COMPOSER_GITHUB=<YOUR_GITHUB_TOKEN>` - Adds Github oauth token for composer which allows composer to get unlimited repositories from Github without blocking non-interactive mode with request for authorization. You can obtain your token at [https://github.com/settings/tokens](https://github.com/settings/tokens)
    
     [Composer documentation about Github API rate limit](https://getcomposer.org/doc/articles/troubleshooting.md#api-rate-limit-and-oauth-tokens)
-
-## Advantages of these images
-
- - Builds are based on official Docker php images
- - Automatically rebuilds when official images are updated, so this repository always contain the latest versions
- - PHP 5.3 added based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
