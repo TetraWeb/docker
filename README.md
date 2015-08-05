@@ -19,9 +19,9 @@ Also these tools are trying to be resources savvy, since in most cases huge in-R
  - [Gitlab-runner bootstrap script](https://github.com/TetraWeb/docker/tree/master/gitlab-runner-vm) for deploying gitlab-runner
  - [PHP Docker images](https://github.com/TetraWeb/docker/tree/master/php) - based on official Docker images, but with additional modules and 5.3 
  - [MySQL Docker images](https://github.com/TetraWeb/docker/tree/master/mysql) - with minimized RAM requirements
+ - [Example projects](https://github.com/TetraWeb/docker/tree/master/examples) - Example PHP projects
 
 ## TODO
- - PHP composer oauth authorization token
  - MySQL with smaller RAM demands
  - Mongo (Maybe smaller initial size to decrease the time of initialization)
 
