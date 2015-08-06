@@ -21,6 +21,18 @@ Also these tools are trying to be resources savvy, since in most cases huge in-R
  - [MySQL Docker images](https://github.com/TetraWeb/docker/tree/master/mysql) - with minimized RAM requirements
  - [Example projects](https://github.com/TetraWeb/docker/tree/master/examples) - Example PHP projects
 
+## Quick start
+
+1. Install [Gitlab](https://about.gitlab.com/) and [Gitlab CI](https://about.gitlab.com/gitlab-ci/)
+1. Get a server (VM or metal) with minimal Ubuntu-14.04 installed. It will be used for the runner
+1. Login as root to a server and execute `curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash` and answer the questions. This script will install docker, Gitlab runner, and configure runner for using these docker images.
+
+Script also installs a cronjob for updating images daily, so you will always have the latest versions of PHP images.
+
+Runner is limited for using only these images `tetraweb/php:*` and any service images `*/*`
+
+If you want to use the server for also running other images (`ruby` or whatever), you should add another runners to `/etc/gitlab-runner/config.toml`, and DO NOT overwrite `allowed_images = ["tetraweb/php:*"]` for this runner, since it is a potential security breach.
+
 ## TODO
  - MySQL with smaller RAM demands
  - Mongo (Maybe smaller initial size to decrease the time of initialization)
