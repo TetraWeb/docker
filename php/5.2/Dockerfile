@@ -37,15 +37,15 @@ xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini.disabled
 RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*
 
 # Install composer and put binary into $PATH
-RUN curl -sS https://getcomposer.org/installer | php \
-    && mv composer.phar /usr/local/bin/ \
-    && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
+#RUN curl -sS https://getcomposer.org/installer | php \
+#    && mv composer.phar /usr/local/bin/ \
+#    && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
 # Install phpunit and put binary into $PATH
-RUN curl -sSo phpunit.phar https://phar.phpunit.de/phpunit.phar \
-    && chmod 755 phpunit.phar \
-    && mv phpunit.phar /usr/local/bin/ \
-    && ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
+#RUN curl -sSo phpunit.phar https://phar.phpunit.de/phpunit.phar \
+#    && chmod 755 phpunit.phar \
+#    && mv phpunit.phar /usr/local/bin/ \
+#    && ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
