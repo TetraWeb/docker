@@ -12,19 +12,15 @@ RUN apt-get update && apt-get install -y autoconf file g++ gcc libc-dev make pkg
 ENV PHP_INI_DIR /usr/local/etc/php
 RUN mkdir -p $PHP_INI_DIR/conf.d
 
-
-#ENV GPG_KEYS 0B96609E270F565C13292B24C13C70B87267B52D 0A95E9A026542D53835E3F3A7DEC4E69FC9C83D7
-#RUN set -xe \
-#       && for key in $GPG_KEYS; do \
-#               gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "$key"; \
-#       done
-
 ENV PHP_VERSION 5.2.17
+
+COPY docker-php-ext-* /usr/local/bin/
 
 # --enable-mysqlnd is included below because it's harder to compile after the fact the extensions are (since it's a plugin for several extensions, not an extension in itself)
 RUN buildDeps=" \
                 $PHP_EXTRA_BUILD_DEPS \
                 libcurl4-openssl-dev \
+                libmysqlclient-dev \
                 libpcre3-dev \
                 libreadline6-dev \
                 librecode-dev \
@@ -45,8 +41,6 @@ RUN buildDeps=" \
                 --with-config-file-scan-dir="$PHP_INI_DIR/conf.d" \
                 $PHP_EXTRA_CONFIGURE_ARGS \
                 --disable-cgi \
-#               --enable-mysqlnd \
-#               --with-mysql \
                 --with-curl \
                 --with-openssl \
                 --with-readline \
@@ -54,12 +48,11 @@ RUN buildDeps=" \
                 --with-zlib \
         && make -j"$(nproc)" \
         && make install \
+        && docker-php-ext-install mysql mysqli \
 #       && { find /usr/local/bin /usr/local/sbin -type f -executable -exec strip --strip-all '{}' + || true; } \
-#       && apt-get purge -y --forse-yes=true --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
+#       && apt-get purge -y --force-yes=true --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
         && make clean
 
 RUN apt-get update && apt-get install -y procps --no-install-recommends && rm -r /var/lib/apt/lists/*
-
-COPY docker-php-ext-* /usr/local/bin/
 
 CMD ["php", "-a"]
