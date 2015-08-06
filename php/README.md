@@ -21,7 +21,7 @@ See below for details
  - Builds are based on official Docker php images
  - Automatically rebuilt when official images are updated, so this repository always contains the latest versions
  - PHP 5.3 added based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
- - PHP 5.2 added based on Docker Debian Squeeze images. No surprises here as well
+ - PHP 5.2 added based on Docker Debian Squeeze images. Without support of `mongo` extension, `composer` and `phpunit`. This image is intended for support of really old projects.
 
 # Supported tags and respective `Dockerfile` links
 
