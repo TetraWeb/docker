@@ -18,6 +18,8 @@ RUN buildDeps=" \
     && docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql zip \
     #&& printf "\n" | pecl install mongo \
     #&& echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini \
+    && pecl install phar \
+    && echo "extension=phar.so" > /usr/local/etc/php/conf.d/phar.ini \
     && pecl install redis \
     && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
     && EXT_DIR=`php -r 'echo ini_get("extension_dir");'` \
@@ -46,6 +48,16 @@ RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /v
 #    && chmod 755 phpunit.phar \
 #    && mv phpunit.phar /usr/local/bin/ \
 #    && ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
+
+# Install PHP Code sniffer
+RUN curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
+    && chmod 755 phpcs.phar \
+    && mv phpcs.phar /usr/local/bin/ \
+    && ln -s /usr/local/bin/phpcs.phar /usr/local/bin/phpcs \
+    && curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcbf.phar \
+    && chmod 755 phpcbf.phar \
+    && mv phpcbf.phar /usr/local/bin/ \
+    && ln -s /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf
 
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]

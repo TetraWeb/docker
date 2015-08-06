@@ -9,19 +9,20 @@ These images are built from [Docker official php images](https://registry.hub.do
 
  - External extensions: redis, mongo. Disabled by default: opcache, xdebug (Opcache is compiled as core extension in PHP 5.5+)
  - Core extensions: gettext, mbstring, mcrypt, pcntl, pdo_mysql, zip
- - Git client from official jessie repo
+ - Git client from official debian repo
  - Composer
  - PHPUnit - latest stable version
+ - PHP Code Sniffer - latest stable version of `phpcs` and `phpcbf` commands
  - `docker-php-ext-enable` and `docker-php-ext-disable` will enable and disable extensions (load modules in additional ini files)
 
 See below for details
 
 ## Advantages of these images
 
- - Builds are based on official Docker php images
+ - Builds are based on the official Docker php images
  - Automatically rebuilt when official images are updated, so this repository always contains the latest versions
- - PHP 5.3 added based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
- - PHP 5.2 added based on Docker Debian Squeeze images. Without support of `mongo` extension, `composer` and `phpunit`. This image is intended for support of really old projects.
+ - PHP 5.3 image is based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
+ - PHP 5.2 image is based on Docker Debian Squeeze images. Without support of `mongo` extension, `composer` and `phpunit`. This image is intended for support of really old projects.
 
 # Quick start guide
 
