@@ -21,7 +21,7 @@ RUN buildDeps=" \
     && docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql zip xdebug \
     && echo "xdebug.default_enable=1\n\
 xdebug.cli_color=1\n\
-xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
+xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && printf "\n" | pecl install mongo && docker-php-ext-enable mongo \
     && pecl install ZendOpcache && docker-php-ext-enable opcache \
     && pecl install redis && docker-php-ext-enable redis \
