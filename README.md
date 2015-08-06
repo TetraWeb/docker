@@ -12,12 +12,12 @@ You need to install Gitlab and Gitlab CI separately. After you are done with tha
 
 4. Links to redis and mongo images from official Docker
 
-The goal of this tools is to automate as much as possible of routine work related to configuring runner so you can concentrate on writing tests for your code.
+The goal of these tools is to automate as much as possible of routine work related to configuring the runner so you can concentrate on writing tests for your code.
 Also these tools are trying to be resources savvy, since in most cases huge in-RAM caches are not needed for just running unit tests with some fixtures. So you can use very small VMs for running tests
 
 ## Contents of repository
  - [Gitlab-runner bootstrap script](https://github.com/TetraWeb/docker/tree/master/gitlab-runner-vm) for deploying gitlab-runner
- - [PHP Docker images](https://github.com/TetraWeb/docker/tree/master/php) - based on official Docker images, but with additional modules and 5.3 
+ - [PHP Docker images](https://github.com/TetraWeb/docker/tree/master/php) - based on official Docker images, but include addtional modules and also obsolete versions of PHP 5.3 and 5.2
  - [MySQL Docker images](https://github.com/TetraWeb/docker/tree/master/mysql) - with minimized RAM requirements
  - [Example projects](https://github.com/TetraWeb/docker/tree/master/examples) - Example PHP projects
 
