@@ -23,6 +23,10 @@ See below for details
  - PHP 5.3 added based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
  - PHP 5.2 added based on Docker Debian Squeeze images. Without support of `mongo` extension, `composer` and `phpunit`. This image is intended for support of really old projects.
 
+# Quick start guide
+
+Check the [Quick start guide](https://github.com/TetraWeb/docker/blob/master/README.md#quick-start)
+
 # Supported tags and respective `Dockerfile` links
 
 -	[`5.2-cli`, `5.2` (*5.2/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.2/Dockerfile)
