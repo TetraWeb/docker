@@ -15,10 +15,9 @@ RUN buildDeps=" \
     && echo "deb http://httpredir.debian.org/debian wheezy contrib non-free" > /etc/apt/sources.list.d/additional.list \
     && apt-get update && apt-get install -y libmcrypt4 --no-install-recommends \
     && apt-get install -y $buildDeps --no-install-recommends \
-    && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql zip \
-    && printf "\n" | pecl install mongo \
-    && echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini \
+    #&& printf "\n" | pecl install mongo \
+    #&& echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini \
     && pecl install redis \
     && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
     && EXT_DIR=`php -r 'echo ini_get("extension_dir");'` \
@@ -32,8 +31,7 @@ RUN buildDeps=" \
     && echo "zend_extension=$EXT_DIR/xdebug.so\n\
 xdebug.default_enable=1\n\
 xdebug.cli_color=1\n\
-xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini.disabled \
-    && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps
+xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini.disabled
 
 # Install git
 RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*

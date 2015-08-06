@@ -6,7 +6,7 @@ You need to install Gitlab and Gitlab CI separately. After you are done with tha
 
 1. Ability to deploy a runner on separate VM or on already running server inside a Docker container. It is not recommended to install runner right on the production system. Better do it inside the Docker container
 
-2. Set of Docker images for PHP 5.3 - 7.0 based on official Docker PHP images
+2. Set of Docker images for PHP 5.2 - 7.0 based on official Docker PHP images
 
 3. MySQL image with minimized requirements for RAM based on official Docker image
 
