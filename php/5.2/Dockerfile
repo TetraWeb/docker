@@ -15,25 +15,16 @@ RUN buildDeps=" \
     && echo "deb http://httpredir.debian.org/debian wheezy contrib non-free" > /etc/apt/sources.list.d/additional.list \
     && apt-get update && apt-get install -y libmcrypt4 --no-install-recommends \
     && apt-get install -y $buildDeps --no-install-recommends \
-    && docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql zip \
-    #&& printf "\n" | pecl install mongo \
-    #&& echo "extension=mongo.so" > /usr/local/etc/php/conf.d/mongo.ini \
-    && pecl install phar \
-    && echo "extension=phar.so" > /usr/local/etc/php/conf.d/phar.ini \
-    && pecl install redis \
-    && echo "extension=redis.so" > /usr/local/etc/php/conf.d/redis.ini \
-    && EXT_DIR=`php -r 'echo ini_get("extension_dir");'` \
-    && pecl install ZendOpcache \
-    && echo "zend_extension=$EXT_DIR/opcache.so" > /usr/local/etc/php/conf.d/opcache.ini.disabled \
-    && mkdir /tmp/xdebug && cd /tmp/xdebug \
+    && cd /usr/src/php/ext/ \
     && curl -L http://xdebug.org/files/xdebug-$XDEBUG_VERSION.tgz | tar -zxf - \
-    && cd xdebug-$XDEBUG_VERSION \
-    && phpize && ./configure && make && make install \
-    && cd / && rm -rf /tmp/xdebug \
-    && echo "zend_extension=$EXT_DIR/xdebug.so\n\
-xdebug.default_enable=1\n\
+    && docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql zip xdebug-$XDEBUG_VERSION \
+    && echo "xdebug.default_enable=1\n\
 xdebug.cli_color=1\n\
-xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini.disabled
+xdebug.coverage_enable=1" > /usr/local/etc/php/conf.d/xdebug.ini \
+#    && printf "\n" | pecl install mongo && docker-php-ext-enable mongo \
+    && pecl install ZendOpcache && docker-php-ext-enable opcache \
+    && pecl install phar && docker-php-ext-enable phar \
+    && pecl install redis && docker-php-ext-enable redis
 
 # Install git
 RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*
