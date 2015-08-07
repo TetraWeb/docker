@@ -2,8 +2,6 @@ FROM tetraweb/php:5.3-vanilla
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
-COPY docker-php-ext-* /usr/local/bin/
-
 ENV XDEBUG_VERSION 2.2.7
 
 # Install php extensions

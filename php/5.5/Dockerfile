@@ -2,8 +2,6 @@ FROM php:5.5
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
-COPY docker-php-ext-* /usr/local/bin/
-
 ENV XDEBUG_VERSION 2.3.3
 
 # Install php extensions
