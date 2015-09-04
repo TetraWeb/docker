@@ -6,8 +6,15 @@ ENV XDEBUG_VERSION 2.3.3
 
 # Install php extensions
 RUN buildDeps=" \
+        libbz2-dev \
+        libenchant-dev \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
         libmcrypt-dev \
+        libpng12-dev \
         libssl-dev \
+        libxml2-dev \
+        libxpm-dev \
         zlib1g-dev \
     " \
     && echo "deb http://httpredir.debian.org/debian jessie contrib non-free" > /etc/apt/sources.list.d/additional.list \
@@ -16,7 +23,8 @@ RUN buildDeps=" \
     && cd /usr/src/php/ext/ \
     && curl -L http://xdebug.org/files/xdebug-$XDEBUG_VERSION.tgz | tar -zxf - \
     && mv xdebug-$XDEBUG_VERSION xdebug \
-    && docker-php-ext-install gettext mbstring mcrypt opcache pcntl pdo_mysql zip xdebug \
+    && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-xpm-dir=/usr/include/ \
+    && docker-php-ext-install bcmath bz2 calendar dba dom enchant exif ftp gd gettext mbstring mcrypt opcache pcntl pdo_mysql zip xdebug \
     && echo "xdebug.default_enable=1\n\
 xdebug.cli_color=1\n\
 xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
