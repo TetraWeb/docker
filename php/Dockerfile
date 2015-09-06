@@ -55,7 +55,6 @@ RUN buildDeps=" \
     && for ext in $phpModules; do \
            rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini; \
        done \
-    && for ext in $phpModules; do rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini done \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps
 
 # Install git
