@@ -40,10 +40,12 @@ RUN buildDeps=" \
     && ln -s /usr/lib/x86_64-linux-gnu/libldap_r.a /usr/lib/libldap_r.a \
     && ln -s /usr/lib/x86_64-linux-gnu/libsybdb.a /usr/lib/libsybdb.a \
     && ln -s /usr/lib/x86_64-linux-gnu/libsybdb.so /usr/lib/libsybdb.so \
+    && ln -s /usr/lib/x86_64-linux-gnu/libXpm.a /usr/lib/libXpm.a \
+    && ln -s /usr/lib/x86_64-linux-gnu/libXpm.so /usr/lib/libXpm.so \
     && docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-xpm-dir=/usr/include/ \
     && docker-php-ext-configure imap --with-imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-configure ldap --with-ldap-sasl \
-    && docker-php-ext-install bcmath bz2 calendar dba dom enchant exif ftp gd gettext imap ldap mbstring mcrypt mssql opcache pcntl pdo pdo_dblib pdo_mysql pdo_pgsql pgsql pspell shmop snmp soap sockets sysvmsg sysvsem sysvshm tidy wddx xmlrpc xsl zip xdebug \
+    && docker-php-ext-install bcmath bz2 calendar dba dom enchant exif ftp gd gettext imap ldap mbstring mcrypt mssql pcntl pdo pdo_dblib pdo_mysql pdo_pgsql pgsql pspell shmop snmp soap sockets sysvmsg sysvsem sysvshm tidy wddx xmlrpc xsl zip xdebug \
     && echo "xdebug.default_enable=1\n\
 xdebug.cli_color=1\n\
 xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
