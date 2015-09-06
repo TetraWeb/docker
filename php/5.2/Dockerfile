@@ -48,7 +48,10 @@ xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 #    && printf "\n" | pecl install mongo && docker-php-ext-enable mongo \
     && pecl install ZendOpcache && docker-php-ext-enable opcache \
     && pecl install phar && docker-php-ext-enable phar \
-    && pecl install redis && docker-php-ext-enable redis
+    && pecl install redis && docker-php-ext-enable redis \
+    && for ext in $phpModules; do \
+           rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini; \
+       done
 
 # Install git
 RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*
