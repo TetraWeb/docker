@@ -30,7 +30,7 @@ RUN buildDeps=" \
         zlib1g-dev \
     " \
     && phpModules=" \
-        bcmath bz2 calendar dba exif ftp gd gettext imap ldap mbstring pdo_dblib pdo_pgsql pgsql pspell shmop snmp soap sockets sysvmsg sysvsem sysvshm tidy wddx xmlrpc xsl \
+        bcmath bz2 calendar dba exif ftp gd gettext imap ldap mbstring mysql mysqli pdo_dblib pdo_pgsql pgsql pspell shmop snmp soap sockets sysvmsg sysvsem sysvshm tidy wddx xmlrpc xsl \
     " \
     && echo "deb http://httpredir.debian.org/debian wheezy contrib non-free" > /etc/apt/sources.list.d/additional.list \
     && apt-get update && apt-get install -y libmcrypt4 --no-install-recommends \

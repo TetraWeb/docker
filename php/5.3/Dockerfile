@@ -17,7 +17,7 @@ RUN buildDeps=" \
     && curl -L http://xdebug.org/files/xdebug-$XDEBUG_VERSION.tgz | tar -zxf - \
     && mv xdebug-$XDEBUG_VERSION xdebug \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
-    && docker-php-ext-install gettext mbstring mcrypt pcntl pdo_mysql zip xdebug \
+    && docker-php-ext-install gettext mbstring mcrypt mysql mysqli pcntl pdo_mysql zip xdebug \
     && echo "xdebug.default_enable=1\n\
 xdebug.cli_color=1\n\
 xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
