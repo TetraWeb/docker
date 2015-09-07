@@ -26,8 +26,8 @@ xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
     && pecl install redis && docker-php-ext-enable redis \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps
 
-# Install git
-RUN apt-get update && apt-get install -y git --no-install-recommends && rm -r /var/lib/apt/lists/*
+# Install git & msmtp
+RUN apt-get update && apt-get install -y git msmtp-mta --no-install-recommends && rm -r /var/lib/apt/lists/*
 
 # Install composer and put binary into $PATH
 RUN curl -sS https://getcomposer.org/installer | php \
