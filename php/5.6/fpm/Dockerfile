@@ -80,3 +80,5 @@ RUN curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
     && chmod 755 phpcbf.phar \
     && mv phpcbf.phar /usr/local/bin/ \
     && ln -s /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf
+
+COPY msmtprc /etc/

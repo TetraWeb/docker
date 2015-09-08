@@ -7,13 +7,13 @@ Images do not have `VOLUME` directories since fresh version of sources is suppos
 
 These images are built from [Docker official php images](https://registry.hub.docker.com/_/php/), but additionally include:
 
- - External extensions: redis, mongo. Disabled by default: opcache, xdebug (Opcache is compiled as core extension in PHP 5.5+)
- - Core extensions: gettext, mbstring, mcrypt, pcntl, pdo_mysql, zip
+ - All extensions are compiled and ready for loading with docker-php-ext-enable
+ - External extensions: redis, mongo
+ - sendmail command via msmtp, configured as relay to localhost. Check `/etc/msmtprc`
  - Git client from official debian repo
  - Composer
  - PHPUnit - latest stable version
  - PHP Code Sniffer - latest stable version of `phpcs` and `phpcbf` commands
- - `docker-php-ext-enable` and `docker-php-ext-disable` will enable and disable extensions (load modules in additional ini files)
 
 See below for details
 
