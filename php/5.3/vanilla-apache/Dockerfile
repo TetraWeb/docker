@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y autoconf file g++ gcc libc-dev make pkg
 ENV PHP_INI_DIR /usr/local/etc/php
 RUN mkdir -p $PHP_INI_DIR/conf.d
 
-RUN apt-get update && apt-get install -y apache2-bin apache2.2-common --no-install-recommends && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install -y apache2.2-bin apache2.2-common --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 RUN rm -rf /var/www/html && mkdir -p /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www/html && chown -R www-data:www-data /var/lock/apache2 /var/run/apache2 /var/log/apache2 /var/www/html
 
