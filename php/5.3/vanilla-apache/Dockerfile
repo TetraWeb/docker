@@ -22,6 +22,8 @@ COPY apache2.conf /etc/apache2/apache2.conf
 
 RUN a2enmode rewrite rpaf
 
+RUN sed -i -- "s/#   RPAFheader X-Real-IP/    RPAFheader X-Real-IP/g" /etc/apache2/mods-available/rpaf.conf
+
 ENV PHP_EXTRA_BUILD_DEPS apache2-prefork-dev
 ENV PHP_EXTRA_CONFIGURE_ARGS --with-apxs2=/usr/bin/apxs2
 
