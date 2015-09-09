@@ -20,7 +20,7 @@ RUN mv /etc/apache2/apache2.conf /etc/apache2/apache2.conf.dist && rm /etc/apach
 COPY apache2.conf /etc/apache2/apache2.conf
 # it'd be nice if we could not COPY apache2.conf until the end of the Dockerfile, but its contents are checked by PHP during compilation
 
-RUN a2enmode rewrite rpaf
+RUN a2enmod rewrite rpaf
 
 RUN sed -i -- "s/#   RPAFheader X-Real-IP/    RPAFheader X-Real-IP/g" /etc/apache2/mods-available/rpaf.conf
 
