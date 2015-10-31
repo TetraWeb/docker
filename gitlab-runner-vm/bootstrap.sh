@@ -22,7 +22,7 @@
 # Usage:
 # 1. Install fresh ubuntu distribution
 # 2.1 Non-interactive mode (doesn't require any input):
-#     # export CI_URL=http://ci.example.com CI_TOKEN=12345abcdef[ OTHER_VAR=VALUE ...]; curl -SL https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
+#     # export CI_URL=http://git.example.com/ci CI_TOKEN=12345abcdef[ OTHER_VAR=VALUE ...]; curl -SL https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
 # OR
 # 2.2 Interactive mode (script will ask for all variables to be typed while run)
 #     # curl -SL https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash
@@ -44,7 +44,7 @@ create_swap() {
 
 do_install() {
     while [ -z "$CI_URL" ]; do
-        echo -n "Enter URL of your Gitlab CI installation: "
+        echo -n "Enter URL of your Gitlab CI installation [http://git.example.com/ci]: "
         read CI_URL < /dev/tty
     done
 
