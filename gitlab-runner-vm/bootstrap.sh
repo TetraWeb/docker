@@ -55,7 +55,7 @@ do_install() {
 
     if [ -z "$TIMEZONE" ]; then
         echo -n "Timezone name [America/New_York]: "
-        read $TIMEZONE < /dev/tty
+        read TIMEZONE < /dev/tty
         if [ -z "$TIMEZONE" ]; then
             TIMEZONE="America/New_York"
         fi
