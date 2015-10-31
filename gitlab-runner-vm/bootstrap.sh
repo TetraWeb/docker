@@ -91,20 +91,23 @@ do_install() {
     curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
     apt-get install gitlab-ci-multi-runner
 
-    sudo gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" --tag-list 'php,mysql' --executor docker --docker-image tetraweb/php:latest --docker-mysql latest
+    # Declare environment variables array
+    declare -a ENVVARS
+
+    if [ ! -z "$COMPOSER_GITHUB" ]; then
+        ENVVARS+=(\"COMPOSER_GITHUB=$COMPOSER_GITHUB\")
+    fi
+    if [ ! -z "$TIMEZONE" ]; then
+        ENVVARS+=(\"TIMEZONE=$TIMEZONE\")
+    fi
+
+    RVARS=$( IFS=$','; echo "${ENVVARS[*]}" )
+
+    gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" --tag-list 'php,mysql' --executor docker --docker-image tetraweb/php:latest --env "$RVARS"
     echo "    allowed_images = [\"tetraweb/php:*\"]" >> /etc/gitlab-runner/config.toml
     echo "    allowed_services = [\"*\", \"*/*\"]" >> /etc/gitlab-runner/config.toml
 
     sed -i -- "s/concurrent = 1/concurrent = $CONCURRENT/g" /etc/gitlab-runner/config.toml
-
-    if [ ! -z "$COMPOSER_GITHUB" ]; then
-        ENVVARS="$ENVVARS, \"COMPOSER_GITHUB=$COMPOSER_GITHUB\""
-    fi
-    if [ ! -z "$TIMEZONE" ]; then
-        ENVVARS="$ENVVARS, \"TIMEZONE=$TIMEZONE\""
-    fi
-    sed -i -- "s/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"$ENVVARS/g" /etc/gitlab-runner/config.toml
-    sed -i -- "s/^    services =/    #services =/g" /etc/gitlab-runner/config.toml
 
     cronjob="#!/bin/bash\n"
     for phpver in 5.2 5.3 5.4 5.5 5.6 7.0
