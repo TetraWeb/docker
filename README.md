@@ -28,6 +28,7 @@ Also these tools are trying to be resources savvy, since in most cases huge in-R
 1. Login as root to a server and execute `curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash` and answer the questions. This script will install docker, Gitlab runner, and configure runner for using these docker images.
 
 Script also installs the cronjob for updating images weekly, so you will always have the latest versions of PHP images (`/etc/cron.weekly/docker-update-images`)
+
 *It's not recommended to run update more often since docker cleanup system of unused images still is not perfect and leave some garbage in your /var/lib/docker*
 
 Runner is limited to `tetraweb/php:*` images for main container (where your repository is cloned) and any service images `*/*` (secondary containers spinned for services like mysql, redis, etc)
