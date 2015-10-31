@@ -2,7 +2,7 @@
 
 This repository contains a set of utilities for running PHP tests via [Gitlab CI](https://about.gitlab.com/gitlab-ci/).
 
-You need to install Gitlab and Gitlab CI separately. After you are done with that, these tools provide you with:
+You need to install Gitlab and Gitlab CI is a part of it. After you are done with that, these tools provide you with:
 
 1. Ability to deploy a runner on separate VM or on already running server inside a Docker container. It is not recommended to install runner right on the production system. Better do it inside the Docker container
 
@@ -10,7 +10,7 @@ You need to install Gitlab and Gitlab CI separately. After you are done with tha
 
 3. MySQL image with minimized requirements for RAM based on official Docker image
 
-4. Links to redis and mongo images from official Docker
+4. Links to redis and mongo official Docker images
 
 The goal of these tools is to automate as much as possible of routine work related to configuring the runner so you can concentrate on writing tests for your code.
 Also these tools are trying to be resources savvy, since in most cases huge in-RAM caches are not needed for just running unit tests with some fixtures. So you can use very small VMs for running tests
@@ -23,13 +23,14 @@ Also these tools are trying to be resources savvy, since in most cases huge in-R
 
 ## Quick start
 
-1. Install [Gitlab](https://about.gitlab.com/) and [Gitlab CI](https://about.gitlab.com/gitlab-ci/)
+1. Install [Gitlab](https://about.gitlab.com/)
 1. Get a server (VM or metal) with minimal Ubuntu-14.04 installed. It will be used for the runner
 1. Login as root to a server and execute `curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash` and answer the questions. This script will install docker, Gitlab runner, and configure runner for using these docker images.
 
-Script also installs a cronjob for updating images daily, so you will always have the latest versions of PHP images.
+Script also installs the cronjob for updating images weekly, so you will always have the latest versions of PHP images (`/etc/cron.weekly/docker-update-images`)
+*It's not recommended to run update more often since docker cleanup system of unused images still is not perfect and leave some garbage in your /var/lib/docker*
 
-Runner is limited for using only these images `tetraweb/php:*` and any service images `*/*`
+Runner is limited to `tetraweb/php:*` images for main container (where your repository is cloned) and any service images `*/*` (secondary containers spinned for services like mysql, redis, etc)
 
 If you want to use the server for also running other images (`ruby` or whatever), you should add another runners to `/etc/gitlab-runner/config.toml`, and DO NOT overwrite `allowed_images = ["tetraweb/php:*"]` for this runner, since it is a potential security breach.
 

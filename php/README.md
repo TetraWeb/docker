@@ -7,9 +7,9 @@ Images do not have `VOLUME` directories since fresh version of sources is suppos
 
 These images are built from [Docker official php images](https://registry.hub.docker.com/_/php/), but additionally include:
 
- - All extensions are compiled and ready for loading with docker-php-ext-enable
+ - All extensions are compiled and ready for loading with `docker-php-ext-enable`
  - External extensions: redis, mongo
- - sendmail command via msmtp, configured as relay to localhost. Check `/etc/msmtprc`
+ - sendmail command via msmtp, configured as relay to localhost. Check `/etc/msmtprc` to setup relay server
  - Git client from official debian repo
  - Composer
  - PHPUnit - latest stable version for php >= 5.6 and PHPUnit 4.8 for php < 5.6
@@ -22,7 +22,7 @@ See below for details
  - Builds are based on the official Docker php images
  - Automatically rebuilt when official images are updated, so this repository always contains the latest versions
  - PHP 5.3 image is based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
- - PHP 5.2 image is based on Docker Debian Squeeze images. Without support of `mongo` extension, `composer` and `phpunit`. This image is intended for support of really old projects.
+ - PHP 5.2 image is based on Docker Debian Squeeze images. Without support of `mongo` extension, `composer` and `phpunit`. This image is intended for the support of really old projects.
 
 # Quick start guide
 
