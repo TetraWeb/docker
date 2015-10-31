@@ -45,6 +45,7 @@ For more information check the [Github repository](https://github.com/TetraWeb/d
 There are environment variables which can be passed to images on docker run
 
  - `WITH_XDEBUG=1` - enables xdebug extension
+ - `TIMEZONE=America/New_York` - set system and `php.ini` timezone
  - `COMPOSER_GITHUB=<YOUR_GITHUB_TOKEN>` - Adds Github oauth token for composer which allows composer to get unlimited repositories from Github without blocking non-interactive mode with request for authorization. You can obtain your token at [https://github.com/settings/tokens](https://github.com/settings/tokens)
-   
+
     [Composer documentation about Github API rate limit](https://getcomposer.org/doc/articles/troubleshooting.md#api-rate-limit-and-oauth-tokens)

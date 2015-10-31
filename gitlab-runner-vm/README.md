@@ -6,7 +6,7 @@
 
 2.1. Non-interactive mode (doesn't require any input while executed):
 
-\# `export CI_URL=http://ci.example.com CI_TOKEN=12345abcdef[ OTHER_VAR=VALUE ...]; curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash`
+\# `export CI_URL=http://git.example.com/ci CI_TOKEN=12345abcdef TIMEZONE=America/New_York[ OTHER_VAR=VALUE ...]; curl -S https://raw.githubusercontent.com/TetraWeb/docker/master/gitlab-runner-vm/bootstrap.sh | bash`
 
 OR
 

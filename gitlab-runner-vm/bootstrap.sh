@@ -10,7 +10,7 @@
 #
 # TODO:
 # System-related variables:
-# TZ="Europe/Moscow" for setting timezone (Is it really needed?)
+# TIMEZONE="America/New_York" for setting timezone
 # USE_SWAP="1G" for creating swap
 #
 # Runner-related variables:
@@ -53,14 +53,19 @@ do_install() {
         read CI_TOKEN < /dev/tty
     done
 
+    if [ -z "$TIMEZONE" ]; then
+        echo -n "Timezone name [America/New_York]: "
+        read $TIMEZONE < /dev/tty
+        if [ -z "$TIMEZONE" ]; then
+            TIMEZONE="America/New_York"
+        fi
+        echo "$TIMEZONE" > /etc/timezone
+        dpkg-reconfigure -f noninteractive tzdata
+    fi
+
     if [ -z "$COMPOSER_GITHUB" ]; then
         echo -n "Composer Github token (optional): "
         read COMPOSER_GITHUB < /dev/tty
-    fi
-
-    if [ ! -z "$TZ" ]; then
-        echo "$TZ" > /etc/timezone
-        ln -sf "/usr/share/zoneinfo/$TZ" /etc/localtime
     fi
 
     if [ ! -z "$USE_SWAP" ]; then
@@ -93,7 +98,10 @@ do_install() {
     sed -i -- "s/concurrent = 1/concurrent = $CONCURRENT/g" /etc/gitlab-runner/config.toml
 
     if [ ! -z "$COMPOSER_GITHUB" ]; then
-        ENVVARS=", \"COMPOSER_GITHUB=$COMPOSER_GITHUB\""
+        ENVVARS="$ENVVARS, \"COMPOSER_GITHUB=$COMPOSER_GITHUB\""
+    fi
+    if [ ! -z "$TIMEZONE" ]; then
+        ENVVARS="$ENVVARS, \"TIMEZONE=$TIMEZONE\""
     fi
     sed -i -- "s/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"/\"MYSQL_ALLOW_EMPTY_PASSWORD=1\"$ENVVARS/g" /etc/gitlab-runner/config.toml
     sed -i -- "s/^    services =/    #services =/g" /etc/gitlab-runner/config.toml
