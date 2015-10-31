@@ -91,7 +91,7 @@ do_install() {
     curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
     apt-get install gitlab-ci-multi-runner
 
-    sudo gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" -t 'php,mysql' -e docker --docker-image tetraweb/php:latest --docker-mysql latest
+    sudo gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" -t 'php,mysql' --executor docker --docker-image tetraweb/php:latest --docker-mysql latest
     echo "    allowed_images = [\"tetraweb/php:*\"]" >> /etc/gitlab-runner/config.toml
     echo "    allowed_services = [\"*\", \"*/*\"]" >> /etc/gitlab-runner/config.toml
 
