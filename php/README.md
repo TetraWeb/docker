@@ -12,7 +12,7 @@ These images are built from [Docker official php images](https://registry.hub.do
  - sendmail command via msmtp, configured as relay to localhost. Check `/etc/msmtprc`
  - Git client from official debian repo
  - Composer
- - PHPUnit - latest stable version
+ - PHPUnit - latest stable version for php >= 5.6 and PHPUnit 4.8 for php < 5.6
  - PHP Code Sniffer - latest stable version of `phpcs` and `phpcbf` commands
 
 See below for details
