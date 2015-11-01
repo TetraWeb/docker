@@ -10,7 +10,6 @@
 #
 # TODO:
 # System-related variables:
-# TIMEZONE="America/New_York" for setting timezone
 # USE_SWAP="1G" for creating swap
 #
 # Runner-related variables:
@@ -18,6 +17,7 @@
 # CI_TOKEN - Token for adding runner. Can be found ($CI_URL/admin/runners)
 # CONCURRENT=1 Number of runners which can be executed simultaneously
 # COMPOSER_GITHUB="TOKEN" - Github oauth token passed to each container
+# TIMEZONE="America/New_York" for setting timezone
 #
 # Usage:
 # 1. Install fresh ubuntu distribution
@@ -101,9 +101,7 @@ do_install() {
         ENVVARS+=(\"TIMEZONE=$TIMEZONE\")
     fi
 
-    RVARS=$( IFS=$','; echo "${ENVVARS[*]}" )
-
-    gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" --tag-list 'php,mysql' --executor docker --docker-image tetraweb/php:latest --env "$RVARS"
+    gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" --tag-list 'php,mysql' --executor docker --docker-image tetraweb/php:latest $(printf " --env %s" "${ENVVARS[@]}")
     echo "    allowed_images = [\"tetraweb/php:*\"]" >> /etc/gitlab-runner/config.toml
     echo "    allowed_services = [\"*\", \"*/*\"]" >> /etc/gitlab-runner/config.toml
 
