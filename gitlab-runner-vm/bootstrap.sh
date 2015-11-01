@@ -94,6 +94,8 @@ do_install() {
     # Declare environment variables array
     declare -a ENVVARS
 
+    ENVVARS+=("MYSQL_ALLOW_EMPTY_PASSWORD=1")
+
     if [ ! -z "$COMPOSER_GITHUB" ]; then
         ENVVARS+=("COMPOSER_GITHUB=$COMPOSER_GITHUB")
     fi
