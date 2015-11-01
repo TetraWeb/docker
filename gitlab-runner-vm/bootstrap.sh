@@ -95,10 +95,10 @@ do_install() {
     declare -a ENVVARS
 
     if [ ! -z "$COMPOSER_GITHUB" ]; then
-        ENVVARS+=(\"COMPOSER_GITHUB=$COMPOSER_GITHUB\")
+        ENVVARS+=("COMPOSER_GITHUB=$COMPOSER_GITHUB")
     fi
     if [ ! -z "$TIMEZONE" ]; then
-        ENVVARS+=(\"TIMEZONE=$TIMEZONE\")
+        ENVVARS+=("TIMEZONE=$TIMEZONE")
     fi
 
     gitlab-ci-multi-runner register -n -r "$CI_TOKEN" -u "$CI_URL" --tag-list 'php,mysql' --executor docker --docker-image tetraweb/php:latest $(printf " --env %s" "${ENVVARS[@]}")
