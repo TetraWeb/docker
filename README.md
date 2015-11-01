@@ -41,7 +41,7 @@ If you want to use the server for also running other images (`ruby` or whatever)
 
 ## Requirements
  - Gitlab v`7.13.0` and later
- - Gitlab CI v`7.13.0` and later
+ - Gitlab CI v`7.13.0` and later (not needed if you have Gitlab >=8)
  - Gitlab runner v`0.5.0` and later
 
 ## Similar projects

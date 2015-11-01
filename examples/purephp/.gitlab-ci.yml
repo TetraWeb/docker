@@ -1,6 +1,10 @@
 #before_script:
 #    - docker-php-ext-enable xdebug
 
+variables:
+  # Timezone will be used both for system and php date.timezone php.ini value
+  TIMEZONE: "Europe/Moscow"
+
 php-5.3:
   image: tetraweb/php:5.3
   services:
