@@ -4,7 +4,7 @@ This repository contains a set of utilities for running PHP tests via [Gitlab CI
 
 These tools provide:
 
-1. Ability to deploy a [Gitlab runner](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner) on separate VM or on already running server inside a Docker container. It is not recommended to install runner right on the production system. Better do it inside the Docker container
+1. [Gitlab runner](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner) deployment script for Ubuntu on VM or metal server. It is not recommended to install runner right on the production system.
 
 2. Set of Docker images for PHP 5.2 - 7.0 based on official Docker PHP images (Few limitations for PHP 5.2)
 
