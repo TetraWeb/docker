@@ -53,8 +53,8 @@ xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
            rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini; \
        done
 
-# Install git & msmtp
-RUN apt-get update && apt-get install -y git msmtp-mta --no-install-recommends && rm -r /var/lib/apt/lists/*
+# Install additional packages
+RUN apt-get update && apt-get install -y git msmtp-mta openssh-client --no-install-recommends && rm -r /var/lib/apt/lists/*
 
 # Install composer and put binary into $PATH
 #RUN curl -sS https://getcomposer.org/installer | php \

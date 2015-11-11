@@ -57,8 +57,8 @@ RUN buildDeps=" \
        done \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps
 
-# Install git & msmtp
-RUN apt-get update && apt-get install -y git msmtp-mta --no-install-recommends && rm -r /var/lib/apt/lists/*
+# Install additional packages
+RUN apt-get update && apt-get install -y git msmtp-mta openssh-client --no-install-recommends && rm -r /var/lib/apt/lists/*
 
 # Install composer and put binary into $PATH
 RUN curl -sS https://getcomposer.org/installer | php \
