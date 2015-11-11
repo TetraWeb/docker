@@ -35,6 +35,19 @@ Runner is limited to `tetraweb/php:*` images for main container (where your repo
 
 If you want to use the server for also running other images (`ruby` or whatever), you should add another runners to `/etc/gitlab-runner/config.toml`, and DO NOT overwrite `allowed_images = ["tetraweb/php:*"]` for this runner, since it is a potential security breach.
 
+## PHP modules
+Almost all modules are disabled by default You should enable modules with `docker-php-ext-enable module1 module2`
+
+### Available core modules
+```
+bcmath bz2 calendar dba enchant exif ftp gd gettext gmp imap intl ldap mbstring mcrypt mssql mysql mysqli opcache pcntl pdo pdo_dblib pdo_mysql pdo_pgsql pgsql pspell shmop snmp soap sockets sysvmsg sysvsem sysvshm tidy wddx xmlrpc xsl zip
+```
+
+### Available PECL modules
+```
+memcache memcached mongo redis xdebug
+```
+
 ## TODO
  - MySQL with smaller RAM demands
  - Mongo (Maybe smaller initial size to decrease the time of initialization)
