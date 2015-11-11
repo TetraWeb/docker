@@ -1,5 +1,5 @@
 #before_script:
-#    - docker-php-ext-enable xdebug
+#    - docker-php-ext-enable xdebug zip
 
 variables:
   # Timezone will be used both for system and php date.timezone php.ini value
