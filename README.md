@@ -36,7 +36,7 @@ Runner is limited to `tetraweb/php:*` images for main container (where your repo
 If you want to use the server for also running other images (`ruby` or whatever), you should add another runners to `/etc/gitlab-runner/config.toml`, and DO NOT overwrite `allowed_images = ["tetraweb/php:*"]` for this runner, since it is a potential security breach.
 
 ## PHP modules
-Almost all modules are disabled by default You should enable modules with `docker-php-ext-enable module1 module2`
+Some modules are enabled by default (compiled-in) and some you have to enable in your .gitlab-ci.yml `before-script` section with `docker-php-ext-enable module1 module2`
 
 ### Compiled-in modules
 ```
