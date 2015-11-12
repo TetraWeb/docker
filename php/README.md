@@ -28,6 +28,24 @@ See below for details
 
 Check the [Quick start guide](https://github.com/TetraWeb/docker/blob/master/README.md#quick-start)
 
+# PHP modules
+Some modules are enabled by default (compiled-in) and some you have to enable in your .gitlab-ci.yml `before-script` section with `docker-php
+
+## Compiled-in modules
+```
+ctype curl date dom ereg fileinfo filter hash iconv json libxml mysqlnd openssl pcre pdo pdo_sqlite phar posix readline recode reflection ses
+```
+
+## Available core modules
+```
+bcmath bz2 calendar dba enchant exif ftp gd gettext gmp imap intl ldap mbstring mcrypt mssql mysql mysqli opcache pcntl pdo pdo_dblib pdo_mys
+```
+
+## Available PECL modules
+```
+memcache memcached mongo redis xdebug
+```
+
 # Supported tags and respective `Dockerfile` links
 
 -	[`5.2-cli`, `5.2` (*5.2/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.2/Dockerfile)
