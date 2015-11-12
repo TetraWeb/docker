@@ -27,9 +27,10 @@ See below for details
 # Quick start guide
 
 Check the [Quick start guide](https://github.com/TetraWeb/docker/blob/master/README.md#quick-start)
+Check the [Example projects](https://github.com/TetraWeb/docker/tree/master/examples)
 
 ## PHP modules
-Some modules are enabled by default (compiled-in) and some you have to enable in your .gitlab-ci.yml `before-script` section with `docker-php-ext-enable module1 module2`
+Some modules are enabled by default (compiled-in) and some you have to enable in your .gitlab-ci.yml `before_script` section with `docker-php-ext-enable module1 module2`
 
 ### Compiled-in modules
 ```
