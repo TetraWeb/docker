@@ -27,6 +27,7 @@ See below for details
 # Quick start guide
 
 Check the [Quick start guide](https://github.com/TetraWeb/docker/blob/master/README.md#quick-start)
+
 Check the [Example projects](https://github.com/TetraWeb/docker/tree/master/examples)
 
 ## PHP modules
