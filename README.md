@@ -38,6 +38,11 @@ If you want to use the server for also running other images (`ruby` or whatever)
 ## PHP modules
 Almost all modules are disabled by default You should enable modules with `docker-php-ext-enable module1 module2`
 
+### Compiled-in modules
+```
+ctype curl date dom ereg fileinfo filter hash iconv json libxml mysqlnd openssl pcre pdo pdo_sqlite phar posix readline recode reflection session simplexml spl sqlite3 standard tokenizer xml xmlreader xmlwriter zlib
+```
+
 ### Available core modules
 ```
 bcmath bz2 calendar dba enchant exif ftp gd gettext gmp imap intl ldap mbstring mcrypt mssql mysql mysqli opcache pcntl pdo pdo_dblib pdo_mysql pdo_pgsql pgsql pspell shmop snmp soap sockets sysvmsg sysvsem sysvshm tidy wddx xmlrpc xsl zip
