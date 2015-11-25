@@ -14,6 +14,7 @@ These images are built from [Docker official php images](https://registry.hub.do
  - Composer
  - PHPUnit - latest stable version for php >= 5.6 and PHPUnit 4.8 for php < 5.6
  - PHP Code Sniffer - latest stable version of `phpcs` and `phpcbf` commands
+ - Node.js v4 from official Node.js debian repositories
 
 See below for details
 
