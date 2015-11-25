@@ -85,4 +85,8 @@ RUN curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
     && mv phpcbf.phar /usr/local/bin/ \
     && ln -s /usr/local/bin/phpcbf.phar /usr/local/bin/phpcbf
 
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - \
+    && apt-get install -y nodejs build-essential
+
 COPY msmtprc /etc/
