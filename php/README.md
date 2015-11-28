@@ -5,10 +5,10 @@ Although they can be used with any automated testing system or as standalone ser
 
 Images do not have `VOLUME` directories since fresh version of sources is supposed to be downloaded into image each time before running tests
 
-These images are built from [Docker official php images](https://registry.hub.docker.com/_/php/), but additionally include:
+These images are built from [Docker official php images](https://registry.hub.docker.com/_/php/), and additionally include:
 
  - All extensions are compiled and ready for loading with `docker-php-ext-enable`
- - External extensions: redis, mongo
+ - PECL extensions: memcache(d), redis, mongo, xdebug
  - sendmail command via msmtp, configured as relay to localhost. Check `/etc/msmtprc` to setup relay server
  - Git client from official debian repo
  - Composer
@@ -55,7 +55,7 @@ memcache memcached mongo redis xdebug
 -	[`5.3-cli`, `5.3` (*5.3/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.3/Dockerfile)
 -	[`5.4-cli`, `5.4` (*5.4/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.4/Dockerfile)
 -	[`5.5-cli`, `5.5` (*5.5/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.5/Dockerfile)
--	[`5.6-cli`, `5.6`, `latest` (*5.6/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.6/Dockerfile)
+-	[`5.6-cli`, `5.6`, `latest` (*5.6/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/Dockerfile)
 -	[`7.0-cli`, `7.0`, (*7.0/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/7.0/Dockerfile)
 
 
