@@ -2,8 +2,20 @@ language: bash
 services: docker
 sudo: required
 
+env:
+  - VERSION=php/5.2/vanilla/
+  - VERSION=php/5.2/
+  - VERSION=php/5.3/vanilla-apache/
+  - VERSION=php/5.3/apache/
+  - VERSION=php/5.3/vanilla/
+  - VERSION=php/5.3/
+  - VERSION=php/5.4/
+  - VERSION=php/5.5/
+  - VERSION=php/
+  - VERSION=php/7.0/
+
 before_script:
-  - cd php/
+  - cd $VERSION
 
 script:
   - docker build .
