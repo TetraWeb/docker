@@ -1,0 +1,13 @@
+language: bash
+services: docker
+sudo: required
+
+before_script:
+  - cd php/
+
+script:
+  - cd php
+  - docker build .
+
+after_script:
+  - docker images
