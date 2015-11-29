@@ -1,5 +1,7 @@
 # TetraWeb PHP CI Kit with Docker
 
+[![Build Status](https://travis-ci.org/TetraWeb/docker.svg?branch=master)](https://travis-ci.org/TetraWeb/docker)
+
 This repository contains a set of utilities for running PHP tests via [Gitlab CI](https://about.gitlab.com/gitlab-ci/).
 
 These tools provide:
