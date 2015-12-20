@@ -84,8 +84,8 @@ do_install() {
     apt-get update && apt-get -y upgrade
     apt-get -y install mc htop ntpdate git curl wget openssh-server
 
-    # Install docker
-    wget -qO- https://get.docker.com/ | sh
+    # Install docker if not found
+    docker >/dev/null 2>&1 || { wget -qO- https://get.docker.com/ | sh; }
 
     # Install multi-runner
     curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-ci-multi-runner/script.deb.sh | sudo bash
