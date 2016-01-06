@@ -54,8 +54,9 @@ RUN buildDeps=" \
 #    && echo "xdebug.default_enable=1\n\
 #xdebug.cli_color=1\n\
 #xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
-    && printf "\n" | pecl install mongo && docker-php-ext-enable mongo \
-    && pecl install redis && docker-php-ext-enable redis \
+    && printf "\n" | pecl install mongo \
+#    && pecl install mongodb \
+    && pecl install redis \
     && for ext in $phpModules; do \
            rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini; \
        done \
