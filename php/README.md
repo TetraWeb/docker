@@ -57,7 +57,7 @@ bcmath bz2 calendar dba enchant exif ftp gd gettext gmp imap intl ldap mbstring 
 
 ### Available PECL modules
 ```
-memcache memcached mongo redis xdebug
+memcache memcached mongo mongodb redis xdebug
 ```
 
 For more information check the [Github repository](https://github.com/TetraWeb/docker/)
