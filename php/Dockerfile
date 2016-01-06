@@ -54,6 +54,7 @@ RUN buildDeps=" \
     && printf "\n" | pecl install memcache \
     && printf "\n" | pecl install memcached \
     && printf "\n" | pecl install mongo \
+    && pecl install mongodb \
     && pecl install redis \
     && for ext in $phpModules; do \
            rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini; \
