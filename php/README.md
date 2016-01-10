@@ -1,5 +1,7 @@
 # PHP for CI
 
+[CHANGELOG](https://github.com/TetraWeb/docker/blob/CHANGELOG.md)
+
 [![Build Status](https://travis-ci.org/TetraWeb/docker.svg?branch=master)](https://travis-ci.org/TetraWeb/docker)
 
 PHP Docker images for continuous integration and running tests. These images were created for using with Gitlab CI.
