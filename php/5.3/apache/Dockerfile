@@ -51,9 +51,6 @@ RUN buildDeps=" \
     && docker-php-ext-configure imap --with-imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-configure ldap --with-ldap-sasl \
     && docker-php-ext-install $phpModules \
-#    && echo "xdebug.default_enable=1\n\
-#xdebug.cli_color=1\n\
-#xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && printf "\n" | pecl install mongo \
 #    && pecl install mongodb \
     && pecl install redis \
