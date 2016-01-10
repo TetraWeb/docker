@@ -1,6 +1,6 @@
 # PHP for CI
 
-[CHANGELOG](https://github.com/TetraWeb/docker/blob/CHANGELOG.md)
+[CHANGELOG](https://github.com/TetraWeb/docker/blob/master/CHANGELOG.md)
 
 [![Build Status](https://travis-ci.org/TetraWeb/docker.svg?branch=master)](https://travis-ci.org/TetraWeb/docker)
 
