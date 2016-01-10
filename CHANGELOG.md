@@ -1,4 +1,4 @@
-h1. TetraWeb docker images changelog
+# Changelog TetraWeb docker images
 
 `01/10/2015`
  - [PHP] Add xdebug for PHP 7
