@@ -60,7 +60,7 @@ RUN apt-get update && apt-get install -y git msmtp-mta openssh-client --no-insta
 #    && ln -s /usr/local/bin/composer.phar /usr/local/bin/composer
 
 # Install phpunit and put binary into $PATH
-#RUN curl -sSo phpunit.phar https://phar.phpunit.de/phpunit.phar \
+#RUN curl -sSLo phpunit.phar https://phar.phpunit.de/phpunit.phar \
 #    && chmod 755 phpunit.phar \
 #    && mv phpunit.phar /usr/local/bin/ \
 #    && ln -s /usr/local/bin/phpunit.phar /usr/local/bin/phpunit
