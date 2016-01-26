@@ -2,7 +2,7 @@ FROM php:7.0
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
-ENV XDEBUG_VERSION 2.4.0rc3
+ENV XDEBUG_VERSION 2.4.0rc4
 
 # Install php extensions
 RUN buildDeps=" \
