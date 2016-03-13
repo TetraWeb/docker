@@ -2,7 +2,7 @@ FROM php:7.0
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
-ENV XDEBUG_VERSION 2.4.0rc4
+ENV XDEBUG_VERSION 2.4.0
 
 # Install php extensions
 RUN buildDeps=" \
@@ -37,7 +37,7 @@ RUN buildDeps=" \
     && apt-get install -y $buildDeps --no-install-recommends \
     && cd /usr/src/php/ext/ \
     && curl -L http://xdebug.org/files/xdebug-$XDEBUG_VERSION.tgz | tar -zxf - \
-    && mv xdebug-$(echo $XDEBUG_VERSION | sed -e 's/\(.*\)/\U\1/') xdebug \
+    && mv xdebug-$XDEBUG_VERSION xdebug \
     && ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
     && ln -s /usr/lib/x86_64-linux-gnu/libldap_r.so /usr/lib/libldap.so \
     && ln -s /usr/lib/x86_64-linux-gnu/libldap_r.a /usr/lib/libldap_r.a \
