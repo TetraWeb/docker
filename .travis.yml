@@ -3,8 +3,6 @@ services: docker
 sudo: required
 
 env:
-  - VERSION=php/5.2/vanilla/
-  - VERSION=php/5.2/
   - VERSION=php/5.3/vanilla-apache/
   - VERSION=php/5.3/apache/
   - VERSION=php/5.3/vanilla/

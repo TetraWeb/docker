@@ -111,7 +111,7 @@ do_install() {
 
     cronjob="#!/bin/bash\n"
 #    Automatic updates of images seems to be working in gitlab-runner
-#    for phpver in 5.2 5.3 5.4 5.5 5.6 7.0
+#    for phpver in 5.3 5.4 5.5 5.6 7.0
 #    do
 #        cronjob+="docker pull tetraweb/php:$phpver\n"
 #    done
