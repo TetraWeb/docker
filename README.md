@@ -8,7 +8,7 @@ These tools provide:
 
 1. [Gitlab runner](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner) deployment script for Ubuntu on VM or metal server. It is not recommended to install runner right on the production system.
 
-2. Set of Docker images for PHP 5.2 - 7.0 based on official Docker PHP images with additional modules and Node.js (Few limitations for PHP 5.2)
+2. Set of Docker images for PHP 5.3 - 7.0 based on official Docker PHP images with additional modules and Node.js
 
 3. MySQL image with minimized requirements for RAM based on official Docker image
 
@@ -19,7 +19,7 @@ Also these tools are trying to be resources savvy, since in most cases huge in-R
 
 ## Contents of repository
  - [Gitlab-runner bootstrap script](https://github.com/TetraWeb/docker/tree/master/gitlab-runner-vm) for deploying gitlab-runner
- - [PHP Docker images](https://github.com/TetraWeb/docker/tree/master/php) - based on official Docker images, but include addtional modules and also obsolete versions of PHP 5.3 and 5.2
+ - [PHP Docker images](https://github.com/TetraWeb/docker/tree/master/php) - based on official Docker images, but include addtional modules and also obsolete versions of PHP 5.3 and PHP 5.4
  - [MySQL Docker images](https://github.com/TetraWeb/docker/tree/master/mysql) - with minimized RAM requirements
  - [Example projects](https://github.com/TetraWeb/docker/tree/master/examples) - Example PHP projects
 

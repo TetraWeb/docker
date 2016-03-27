@@ -9,7 +9,6 @@ Although they can be used with any automated testing system or as standalone ser
 
 # Supported tags and respective `Dockerfile` links
 
--	[`5.2` (*5.2/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.2/Dockerfile)
 -	[`5.3` (*5.3/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.3/Dockerfile)
 -	[`5.4` (*5.4/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.4/Dockerfile)
 -	[`5.5` (*5.5/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.5/Dockerfile)
@@ -36,7 +35,6 @@ See below for details
  - Builds are based on the official Docker php images
  - Automatically rebuilt when official images are updated, so this repository always contains the latest versions
  - PHP 5.3 image is based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
- - PHP 5.2 image is based on Docker Debian Squeeze images. Without support of `mongo` extension, `composer` and `phpunit`. This image is intended for the support of really old projects.
 
 # Quick start guide
 

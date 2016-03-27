@@ -1,7 +1,10 @@
 # Changelog TetraWeb docker images
 
+`2015-03-27`
+ - [PHP] Remove PHP 5.2 since Debian 6.0 image is not available on Docker hub anymore
+
 `2015-03-13`
- - [PHP] update PHP7 xdebug version to stable 2.4.0
+ - [PHP] Update PHP7 xdebug version to stable 2.4.0
 
 `2015-03-04`
  - [VM] Disable updating docker images via cron since gitlab-runner is doing that itself
