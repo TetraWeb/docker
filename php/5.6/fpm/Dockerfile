@@ -20,8 +20,8 @@ RUN buildDeps=" \
         libmemcached-dev \
         libpng12-dev \
         libpq-dev \
-        librabbitmq-dev \
         libpspell-dev \
+        librabbitmq-dev \
         libsasl2-dev \
         libsnmp-dev \
         libssl-dev \
@@ -54,7 +54,7 @@ RUN buildDeps=" \
     && printf "\n" | pecl install memcached \
     && printf "\n" | pecl install mongo \
     && pecl install mongodb \
-    && pecl install redis \
+    && pecl install redis-2.2.8 \
     && for ext in $phpModules; do \
            rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini; \
        done \

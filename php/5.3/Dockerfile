@@ -53,7 +53,7 @@ RUN buildDeps=" \
     && docker-php-ext-install $phpModules \
     && printf "\n" | pecl install mongo \
 #    && pecl install mongodb \
-    && pecl install redis \
+    && pecl install redis-2.2.8 \
     && for ext in $phpModules; do \
            rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini; \
        done \
