@@ -1,5 +1,9 @@
 # Changelog TetraWeb docker images
 
+`2015-06-12`
+ - [PHP] Add amqp extension
+ - [PHP] Add memcache and redis extensions for PHP7
+
 `2016-04-26`
  - [PHP] Uncomment enabling xdebug from environment variables for PHP7.0 (thanks to @vikpe)
 
