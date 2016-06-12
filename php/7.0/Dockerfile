@@ -20,6 +20,7 @@ RUN buildDeps=" \
         libpng12-dev \
         libpq-dev \
         libpspell-dev \
+        librabbitmq-dev \
         libsasl2-dev \
         libsnmp-dev \
         libssl-dev \
@@ -47,7 +48,10 @@ RUN buildDeps=" \
     && docker-php-ext-configure imap --with-imap --with-kerberos --with-imap-ssl \
     && docker-php-ext-configure ldap --with-ldap-sasl \
     && docker-php-ext-install $phpModules \
+    && printf "\n" | pecl install amqp \
+    && printf "\n" | pecl install memcache \
     && pecl install mongodb \
+    && pecl install redis \
     && for ext in $phpModules; do \
            rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini; \
        done \

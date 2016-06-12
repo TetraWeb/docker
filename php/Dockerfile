@@ -21,6 +21,7 @@ RUN buildDeps=" \
         libpng12-dev \
         libpq-dev \
         libpspell-dev \
+        librabbitmq-dev \
         libsasl2-dev \
         libsnmp-dev \
         libssl-dev \
@@ -51,6 +52,7 @@ RUN buildDeps=" \
 #    && echo "xdebug.default_enable=1\n\
 #xdebug.cli_color=1\n\
 #xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+    && printf "\n" | pecl install amqp \
     && printf "\n" | pecl install memcache \
     && printf "\n" | pecl install memcached \
     && printf "\n" | pecl install mongo \

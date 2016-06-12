@@ -1,5 +1,9 @@
 # Changelog TetraWeb docker images
 
+`2015-06-12`
+-  [PHP] Add amqp extension
+-  [PHP] Add memcache and redis extensions for PHP7
+
 `2015-03-27`
  - [PHP] Remove PHP 5.2 since Debian 6.0 image is not available on Docker hub anymore
 
