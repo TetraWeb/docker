@@ -1,5 +1,8 @@
 # Changelog TetraWeb docker images
 
+`2015-06-14`
+ - [PHP] Nodejs upgraded to 6.x
+
 `2015-06-12`
  - [PHP] Add amqp extension
  - [PHP] Add memcache and redis extensions for PHP7
