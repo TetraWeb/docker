@@ -1,9 +1,12 @@
 # Changelog TetraWeb docker images
 
-`2015-06-14`
+`2016-06-20`
+ - [PHP] Update xdebug to 2.4.0 for PHP 5.4+
+
+`2016-06-14`
  - [PHP] Nodejs upgraded to 6.x
 
-`2015-06-12`
+`2016-06-12`
  - [PHP] Add amqp extension
  - [PHP] Add memcache and redis extensions for PHP7
 
