@@ -1,5 +1,9 @@
 # Changelog TetraWeb docker images
 
+`2016-11-02`
+ - [PHP] Update xdebug to 2.4.1 for PHP 5.4+
+ - [PHP] Fix compilation issues
+
 `2016-06-20`
  - [PHP] Update xdebug to 2.4.0 for PHP 5.4+
 
