@@ -90,4 +90,6 @@ RUN curl -OL https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar \
 RUN curl -sL https://deb.nodesource.com/setup_6.x | bash - \
     && apt-get install -y nodejs build-essential
 
+RUN apt-get install -y rsync
+
 COPY msmtprc /etc/
