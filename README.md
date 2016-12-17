@@ -8,7 +8,7 @@ These tools provide:
 
 1. [Gitlab runner](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner) deployment script for Ubuntu on VM or metal server. It is not recommended to install runner right on the production system.
 
-2. Set of Docker images for PHP 5.3 - 7.0 based on official Docker PHP images with additional modules and Node.js
+2. Set of Docker images for PHP 5.3 - 7.1 based on official Docker PHP images with additional modules and Node.js
 
 3. MySQL image with minimized requirements for RAM based on official Docker image
 
