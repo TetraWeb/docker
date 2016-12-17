@@ -2,7 +2,7 @@ FROM php:5.5
 
 MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
 
-ENV XDEBUG_VERSION 2.4.1
+ENV XDEBUG_VERSION 2.5.0
 
 # Install php extensions
 RUN buildDeps=" \

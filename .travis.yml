@@ -11,6 +11,7 @@ env:
   - VERSION=php/5.5/
   - VERSION=php/
   - VERSION=php/7.0/
+  - VERSION=php/7.1/
 
 before_script:
   - cd $VERSION
