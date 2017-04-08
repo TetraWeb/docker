@@ -17,7 +17,6 @@ RUN buildDeps=" \
         libkrb5-dev \
         libldap2-dev \
         libmcrypt-dev \
-        libmemcached-dev \
         libpng12-dev \
         libpq-dev \
         libpspell-dev \
@@ -35,7 +34,7 @@ RUN buildDeps=" \
         bcmath bz2 calendar dba enchant exif ftp gd gettext gmp imap ldap intl mbstring mcrypt mssql mysql mysqli pcntl pdo pdo_dblib pdo_mysql pdo_pgsql pgsql pspell shmop snmp soap sockets sysvmsg sysvsem sysvshm tidy wddx xmlrpc xsl zip xdebug \
     " \
     && echo "deb http://httpredir.debian.org/debian jessie contrib non-free" > /etc/apt/sources.list.d/additional.list \
-    && apt-get update && apt-get install -y libc-client2007e libenchant1c2a libfreetype6 libicu52 libjpeg62-turbo libmcrypt4 libmemcachedutil2 libpng12-0 libpq5 libsybdb5 libtidy-0.99-0 libx11-6 libxpm4 libxslt1.1 snmp --no-install-recommends \
+    && apt-get update && apt-get install -y libc-client2007e libenchant1c2a libfreetype6 libicu52 libjpeg62-turbo libmcrypt4 libpng12-0 libpq5 libsybdb5 libtidy-0.99-0 libx11-6 libxpm4 libxslt1.1 snmp --no-install-recommends \
     && apt-get install -y $buildDeps --no-install-recommends \
     && cd /usr/src/php/ext/ \
     && curl -L http://xdebug.org/files/xdebug-$XDEBUG_VERSION.tgz | tar -zxf - \
@@ -53,7 +52,6 @@ RUN buildDeps=" \
     && docker-php-ext-install $phpModules \
     && printf "\n" | pecl install amqp \
     && printf "\n" | pecl install memcache \
-    && printf "\n" | pecl install memcached \
     && printf "\n" | pecl install mongo \
     && pecl install mongodb \
     && pecl install redis-2.2.8 \
