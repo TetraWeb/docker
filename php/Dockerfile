@@ -55,7 +55,6 @@ RUN buildDeps=" \
 #xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && printf "\n" | pecl install amqp \
     && printf "\n" | pecl install memcache \
-    && printf "\n" | pecl install memcached \
     && printf "\n" | pecl install mongo \
     && pecl install mongodb \
     && pecl install redis-2.2.8 \
