@@ -9,8 +9,6 @@ Although they can be used with any automated testing system or as standalone ser
 
 # Supported tags and respective `Dockerfile` links
 
--	[`5.3` (*5.3/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.3/Dockerfile)
--	[`5.4` (*5.4/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.4/Dockerfile)
 -	[`5.5` (*5.5/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/5.5/Dockerfile)
 -	[`5.6`, `latest` (*5.6/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/Dockerfile)
 -	[`7.0`, (*7.0/Dockerfile*)](https://github.com/TetraWeb/docker/blob/master/php/7.0/Dockerfile)
@@ -22,13 +20,13 @@ Images do not have `VOLUME` directories since fresh version of sources is suppos
 These images are built from [Docker official php images](https://registry.hub.docker.com/_/php/), and additionally include:
 
  - All extensions are compiled and ready for loading with `docker-php-ext-enable`
- - PECL extensions: memcache(d), redis, mongo, xdebug
+ - PECL extensions: memcache, redis, mongo, xdebug
  - sendmail command via msmtp, configured as relay to localhost. Check `/etc/msmtprc` to setup relay server
  - Git client from official debian repo
  - Composer
  - PHPUnit - latest stable version for php >= 5.6 and PHPUnit 4.8 for php < 5.6
  - PHP Code Sniffer - latest stable version of `phpcs` and `phpcbf` commands
- - Node.js v4 from official Node.js debian repositories
+ - Node.js v6 from official Node.js debian repositories
 
 See below for details
 
@@ -36,7 +34,6 @@ See below for details
 
  - Builds are based on the official Docker php images
  - Automatically rebuilt when official images are updated, so this repository always contains the latest versions
- - PHP 5.3 image is based on Docker Debian Wheezy images. No surprises here since support of PHP 5.3 is discontinued by PHP
 
 # Quick start guide
 
