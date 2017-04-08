@@ -5,8 +5,11 @@ sudo: required
 env:
   - VERSION=php/5.5/
   - VERSION=php/5.6/
+  - VERSION=php/5.6/fpm/
   - VERSION=php/7.0/
+  - VERSION=php/7.0/fpm/
   - VERSION=php/7.1/
+  - VERSION=php/7.1/fpm/
 
 before_script:
   - cd $VERSION
