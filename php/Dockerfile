@@ -53,6 +53,7 @@ RUN buildDeps=" \
 #xdebug.cli_color=1\n\
 #xdebug.coverage_enable=1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
     && printf "\n" | pecl install amqp \
+    && pecl install igbinary \
     && printf "\n" | pecl install memcache \
     && printf "\n" | pecl install mongo \
     && pecl install mongodb \

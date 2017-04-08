@@ -50,6 +50,7 @@ RUN buildDeps=" \
     && docker-php-ext-configure ldap --with-ldap-sasl \
     && docker-php-ext-install $phpModules \
     && printf "\n" | pecl install amqp \
+    && pecl install igbinary \
     && printf "\n" | pecl install memcache \
     && printf "\n" | pecl install mongo \
     && pecl install mongodb \

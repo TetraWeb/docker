@@ -1,5 +1,9 @@
 # Changelog TetraWeb docker images
 
+`2017-04-08`
+ - Clean up PHP < 5.5
+ - Add igbinary
+
 `2016-12-17`
  - [PHP] Added 7.1 image
  - [PHP] Xdebug updated 2.5.0 for PHP 5.5+
