@@ -51,7 +51,7 @@ RUN buildDeps=" \
     && docker-php-ext-install $phpModules \
     && printf "\n" | pecl install amqp \
     && pecl install igbinary \
-    && printf "\n" | pecl install memcache \
+#    && printf "\n" | pecl install memcache \
     && pecl install mongodb \
     && pecl install redis \
     && for ext in $phpModules; do \
