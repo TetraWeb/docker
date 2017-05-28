@@ -2,6 +2,8 @@
 
 `2017-05-28`
  - Add yarn
+ - memchache commented out in 7.0 and 7.1 due to compilation errors
+ - XDebug updated to 2.5.4 for 7.0 and 7.1
 
 `2017-04-08`
  - Clean up PHP < 5.5
