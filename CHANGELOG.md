@@ -1,5 +1,8 @@
 # Changelog TetraWeb docker images
 
+`2017-05-28`
+ - Add yarn
+
 `2017-04-08`
  - Clean up PHP < 5.5
  - Add igbinary
