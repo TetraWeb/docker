@@ -86,7 +86,6 @@ RUN additionalPackages=" \
         xmlrpc \
         xsl \
         zip \
-        xdebug \
     " \
     && echo "deb http://httpredir.debian.org/debian jessie contrib non-free" > /etc/apt/sources.list.d/additional.list \
     && apt-get update && apt-get install -y --no-install-recommends $buildDeps $runDeps \
