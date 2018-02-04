@@ -1,8 +1,9 @@
 FROM php:7.1
 
-MAINTAINER Dmitry Lukashin <dlukashin@tetraweb.ru>
+ENV XDEBUG_VERSION 2.6.0
 
 RUN additionalPackages=" \
+        apt-transport-https \
         git \
         msmtp-mta \
         openssh-client \
@@ -86,9 +87,14 @@ RUN additionalPackages=" \
         xmlrpc \
         xsl \
         zip \
+        xdebug \
     " \
     && echo "deb http://httpredir.debian.org/debian jessie contrib non-free" > /etc/apt/sources.list.d/additional.list \
     && apt-get update && apt-get install -y --no-install-recommends $buildDeps $runDeps \
+    && docker-php-source extract \
+    && cd /usr/src/php/ext/ \
+    && curl -L http://xdebug.org/files/xdebug-$XDEBUG_VERSION.tgz | tar -zxf - \
+    && mv xdebug-$XDEBUG_VERSION xdebug \
     && ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h \
     && ln -s /usr/lib/x86_64-linux-gnu/libldap_r.so /usr/lib/libldap.so \
     && ln -s /usr/lib/x86_64-linux-gnu/libldap_r.a /usr/lib/libldap_r.a \
@@ -103,10 +109,10 @@ RUN additionalPackages=" \
 #    && printf "\n" | pecl install memcache \
     && pecl install mongodb \
     && pecl install redis \
-    && pecl install xdebug \
     && for ext in $phpModules; do \
            rm -f /usr/local/etc/php/conf.d/docker-php-ext-$ext.ini; \
        done \
+    && docker-php-source delete \
     && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false -o APT::AutoRemove::SuggestsImportant=false $buildDeps \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
