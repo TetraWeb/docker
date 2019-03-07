@@ -1,6 +1,6 @@
 # VM bootstrap script for gitlab-runner
 
-##Usage:
+## Usage:
 
 1. Install fresh ubuntu distribution
 
